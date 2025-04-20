@@ -1,0 +1,21 @@
+/* 📄 src/styles/variables.css */
+
+:root {
+    --variable-collection-accent-100: rgba(143, 188, 143, 1);
+    --variable-collection-accent-200: rgba(52, 94, 55, 1);
+    --variable-collection-action-negative: rgba(184, 105, 105, 1);
+    --variable-collection-action-negative-bg: rgba(253, 217, 217, 1);
+    --variable-collection-action-positive: rgba(109, 127, 183, 1);
+    --variable-collection-action-positive-bg: rgba(234, 242, 252, 1);
+    --variable-collection-bg-100: rgba(250, 250, 250, 1);
+    --variable-collection-bg-200: rgba(245, 245, 245, 1);
+    --variable-collection-bg-300: rgba(224, 224, 224, 1);
+    --variable-collection-primary-100: rgba(80, 161, 104, 1);
+    --variable-collection-primary-200: rgba(97, 188, 132, 1);
+    --variable-collection-primary-300: rgba(198, 255, 230, 1);
+    --variable-collection-text-100: rgba(30, 30, 30, 1);
+    --variable-collection-text-200: rgba(45, 45, 45, 1);
+    --variable-collection-text-300: rgba(69, 69, 69, 1);
+    --bookmark-active: #ECD089;
+  }
+  
