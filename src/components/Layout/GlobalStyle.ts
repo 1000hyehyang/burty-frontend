@@ -35,6 +35,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 button {
   all: unset;
   cursor: pointer;

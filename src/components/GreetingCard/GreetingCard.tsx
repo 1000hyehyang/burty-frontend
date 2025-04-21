@@ -1,5 +1,12 @@
+// 📄 components/GreetingCard.tsx
 import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa";
+
+interface GreetingCardProps {
+  username: string;
+  subtitle: string;
+  profileImage?: string;
+}
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -18,10 +25,11 @@ const LeftGroup = styled.div`
   flex: 1;
 `;
 
-const ProfileImage = styled.div`
+const ProfileImage = styled.img`
   width: clamp(44px, 11vw, 52px);
   height: clamp(44px, 11vw, 52px);
   border-radius: 50%;
+  object-fit: cover;
   background-color: #d9d9d9;
   flex-shrink: 0;
 `;
@@ -55,14 +63,18 @@ const IconWrapper = styled.div`
   align-items: center;
 `;
 
-const GreetingCard = () => {
+const GreetingCard = ({
+  username,
+  subtitle,
+  profileImage = "/default-profile.png",
+}: GreetingCardProps) => {
   return (
     <Card>
       <LeftGroup>
-        <ProfileImage />
+        <ProfileImage src={profileImage} alt={`${username} 프로필 이미지`} />
         <TextBlock>
-          <Title>안녕하세요, 김버티님</Title>
-          <Subtitle>김버티님에게 딱 맞는 혜택이 도착했어요! 확인해볼까요?</Subtitle>
+          <Title>안녕하세요, {username}님</Title>
+          <Subtitle>{subtitle}</Subtitle>
         </TextBlock>
       </LeftGroup>
       <IconWrapper>

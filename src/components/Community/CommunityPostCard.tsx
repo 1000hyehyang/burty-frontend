@@ -12,6 +12,7 @@ interface CommunityPostCardProps {
   likes: number;
   comments: number;
   views: number;
+  profileImage?: string;
 }
 
 // 카드 자체에 양쪽 여백 포함
@@ -26,10 +27,11 @@ const Card = styled.div`
   cursor: pointer;
 `;
 
-const ProfileImage = styled.div`
+const ProfileImage = styled.img`
   width: clamp(28px, 6vw, 32px);
   height: clamp(28px, 6vw, 32px);
   border-radius: 50%;
+  object-fit: cover;
   background-color: #d9d9d9;
   flex-shrink: 0;
 `;
@@ -100,10 +102,11 @@ const CommunityPostCard = ({
   likes,
   comments,
   views,
+  profileImage,
 }: CommunityPostCardProps) => {
   return (
     <Card>
-      <ProfileImage />
+      <ProfileImage src={profileImage || "/default-profile.png"} alt={`${nickname} 프로필`} />
       <ContentBox>
         <TopRow>
           <Nickname>{nickname}</Nickname>

@@ -7,9 +7,9 @@ const AppContainer = styled.div`
   min-width: 375px;
   max-width: 400px;
   background-color: var(--variable-collection-bg-200);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const InnerContainer = styled.div`
