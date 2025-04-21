@@ -6,7 +6,7 @@ import CommunityPostList from "../components/Community/CommunityPostList";
 
 const HomePage = () => (
   <>
-    <GreetingCard username="김버티" subtitle="혜택이 도착했어요!" />
+    <GreetingCard username="김버티" subtitle="김버티님에게 딱 맞는 혜택이 도착했어요!" />
     <AiReportBanner />
     <PolicyList />
     <CommunityPostList />

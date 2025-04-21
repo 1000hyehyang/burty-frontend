@@ -49,7 +49,7 @@ const Title = styled.div`
 `;
 
 const Subtitle = styled.div`
-  font-size: clamp(12px, 3.2vw, 14px);
+  font-size: clamp(10px, 3vw, 12px);
   font-weight: 500;
   color: var(--variable-collection-text-300);
   line-height: 1.4;
