@@ -5,7 +5,7 @@ import { HiUser } from "react-icons/hi";
 import { MdGroups } from "react-icons/md";
 import { TbTie } from "react-icons/tb";
 import { FaHouseChimneyUser } from "react-icons/fa6";
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = styled.nav`
   position: fixed;
@@ -25,9 +25,8 @@ const Nav = styled.nav`
   z-index: 999;
 `;
 
-const NavButton = styled.button<{ active?: boolean }>`
+const NavButton = styled(NavLink)`
   all: unset;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,53 +34,41 @@ const NavButton = styled.button<{ active?: boolean }>`
   gap: 6px;
   font-weight: 600;
   font-size: clamp(11px, 3vw, 13px);
-  color: ${({ active }) =>
-    active
-      ? "var(--variable-collection-primary-100)"
-      : "var(--variable-collection-text-300)"};
+  color: var(--variable-collection-text-300);
+  text-decoration: none;
+  cursor: pointer;
 
   svg {
     font-size: clamp(20px, 5vw, 24px);
   }
+
+  &.active {
+    color: var(--variable-collection-primary-100);
+  }
 `;
 
 const BottomNav = () => {
-  const [selected, setSelected] = useState("home");
-
   return (
     <Nav>
-      <NavButton
-        active={selected === "home"}
-        onClick={() => setSelected("home")}
-      >
-        <AiFillHome />홈
+      <NavButton to="/" end>
+        <AiFillHome />
+        홈
       </NavButton>
-      <NavButton
-        active={selected === "community"}
-        onClick={() => setSelected("community")}
-      >
+      <NavButton to="/community">
         <MdGroups />
         커뮤니티
       </NavButton>
-      <NavButton
-        active={selected === "policy"}
-        onClick={() => setSelected("policy")}
-      >
+      <NavButton to="/settlement">
         <FaHouseChimneyUser />
         정착 정보
       </NavButton>
-      <NavButton
-        active={selected === "jobs"}
-        onClick={() => setSelected("jobs")}
-      >
+      <NavButton to="/jobs">
         <TbTie />
         채용
       </NavButton>
-      <NavButton
-        active={selected === "profile"}
-        onClick={() => setSelected("profile")}
-      >
-        <HiUser />내 정보
+      <NavButton to="/profile">
+        <HiUser />
+        내 정보
       </NavButton>
     </Nav>
   );
