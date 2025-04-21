@@ -12,7 +12,7 @@ const Container = styled.header`
 `;
 
 const Logo = styled.img`
-  height: clamp(16px, 5vw, 20px);
+  height: clamp(20px, 6vw, 24px);
   object-fit: contain;
 `;
 
