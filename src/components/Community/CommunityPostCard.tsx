@@ -14,14 +14,16 @@ interface CommunityPostCardProps {
   views: number;
 }
 
+// 카드 자체에 양쪽 여백 포함
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
   border-radius: 15px;
-  padding: clamp(14px, 4vw, 18px);
+  padding: 16px 50px 16px 20px;
   margin-bottom: clamp(16px, 4vw, 20px);
   display: flex;
   gap: clamp(10px, 4vw, 14px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
 `;
 
 const ProfileImage = styled.div`
@@ -36,13 +38,14 @@ const ContentBox = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 1vw, 6px);
+  gap: clamp(0px, 0.25vw, 2px);
 `;
 
 const TopRow = styled.div`
   display: flex;
   align-items: center;
   gap: clamp(4px, 1vw, 6px);
+  flex-wrap: wrap;
 `;
 
 const Nickname = styled.span`
@@ -61,7 +64,13 @@ const ContentText = styled.p`
   font-size: clamp(11px, 3vw, 13px);
   font-weight: 500;
   color: var(--variable-collection-text-300);
-  line-height: 1.5;
+  line-height: 1.25;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Footer = styled.div`
