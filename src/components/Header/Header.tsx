@@ -1,9 +1,9 @@
-// 📄 components/Header/Header.tsx
 import styled from "styled-components";
 import { FaBell } from "react-icons/fa";
+import LogoImage from "../../assets/images/logo.png";
 
 const Container = styled.header`
-  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 20px);
+  padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 20px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,10 +11,9 @@ const Container = styled.header`
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 `;
 
-const Logo = styled.h1`
-  font-size: clamp(18px, 5vw, 22px);
-  font-weight: 600; /* Pretendard-SemiBold */
-  color: var(--variable-collection-primary-100);
+const Logo = styled.img`
+  height: clamp(16px, 5vw, 20px);
+  object-fit: contain;
 `;
 
 const BellWrapper = styled.div`
@@ -34,7 +33,7 @@ const RedDot = styled.div`
 const Header = () => {
   return (
     <Container>
-      <Logo>버티</Logo>
+      <Logo src={LogoImage} alt="버티 로고" />
       <BellWrapper>
         <FaBell size={20} color="var(--variable-collection-text-200)" />
         <RedDot />
