@@ -1,5 +1,6 @@
 // 📄 components/AiReportBanner/AiReportBanner.tsx
 import styled from "styled-components";
+import PrimaryButton from "../Common/PrimaryButton";
 import ReportIcon from "../../assets/images/ai-report-icon.svg";
 
 const Banner = styled.section`
@@ -11,7 +12,6 @@ const Banner = styled.section`
   );
   background-color: var(--variable-collection-bg-100);
   border-radius: 20px;
-  margin: 16px;
   padding: 24px 16px 20px;
   display: flex;
   flex-direction: column;
@@ -47,28 +47,6 @@ const Subtitle = styled.p`
   margin-top: -8px;
 `;
 
-const Button = styled.button`
-  margin-top: 4px;
-  padding: 12px 0;
-  width: 100%;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: "Pretendard", sans-serif;
-  color: var(--variable-collection-bg-100);
-  background: linear-gradient(
-    90deg,
-    var(--variable-collection-primary-200),
-    var(--variable-collection-primary-100)
-  );
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(80, 161, 104, 0.25);
-  transition: opacity 0.2s;
-
-  &:hover {
-    opacity: 0.9;
-  }
-`;
-
 const AiReportBanner = () => {
   return (
     <Banner>
@@ -77,7 +55,7 @@ const AiReportBanner = () => {
         어디에서 버티는 게 <span>진짜 이득</span>일까?
       </Title>
       <Subtitle>생존 비용을 기반으로 직무와 지역을 재설계해드릴게요.</Subtitle>
-      <Button>AI 추천 정착지 리포트 생성하기</Button>
+      <PrimaryButton>AI 추천 정착지 리포트 생성하기</PrimaryButton>
     </Banner>
   );
 };

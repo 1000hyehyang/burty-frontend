@@ -5,13 +5,12 @@ import { useState } from "react";
 const Container = styled.div`
   background-color: var(--variable-collection-bg-300);
   border-radius: 10px;
-  margin: 0 20px;
+  width: 100%;
   padding: 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  margin-top: 20px;
 `;
 
 const Tab = styled.button<{ active: boolean }>`

@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
+import Badge from "../Common/Badge"; // ✅ 추가
 
 interface PolicyCardProps {
   category: string;
@@ -32,28 +33,6 @@ const TagGroup = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-`;
-
-const Tag = styled.span`
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 20px;
-  background-color: rgba(143, 188, 143, 0.1);
-  color: var(--variable-collection-primary-100);
-`;
-
-const Dday = styled(Tag)<{ closed?: boolean }>`
-  background-color: ${
-    ({ closed }) =>
-      closed
-        ? "var(--variable-collection-bg-200)" // 회색 배경
-        : "var(--variable-collection-action-positive-bg)" // D-day 파란 배경
-  };
-  color: ${
-    ({ closed }) =>
-      closed ? "#aaa" : "var(--variable-collection-action-positive)" // 파란 텍스트
-  };
 `;
 
 const BookmarkButton = styled.button<{ active: boolean }>`
@@ -108,7 +87,7 @@ const PolicyCard = ({
   dday,
   isClosed = false,
 }: PolicyCardProps) => {
-  const [bookmarked, setBookmarked] = useState(false); // 선택 상태
+  const [bookmarked, setBookmarked] = useState(false);
 
   const toggleBookmark = () => setBookmarked((prev) => !prev);
 
@@ -116,8 +95,8 @@ const PolicyCard = ({
     <Card closed={isClosed}>
       <Header>
         <TagGroup>
-          <Tag>{category}</Tag>
-          <Dday closed={isClosed}>{dday}</Dday>
+          <Badge type="primary">{category}</Badge>
+          <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
         <BookmarkButton active={bookmarked} onClick={toggleBookmark}>
           {bookmarked ? <FaBookmark /> : <FaRegBookmark />}

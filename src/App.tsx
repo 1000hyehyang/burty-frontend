@@ -2,7 +2,6 @@
 import GlobalStyle from "./components/Layout/GlobalStyle";
 import AppContainer from "./components/Layout/AppContainer";
 import HomePage from "./pages/HomePage";
-import BottomNav from "./components/BottomNav/BottomNav";
 
 function App() {
   return (
@@ -10,7 +9,6 @@ function App() {
       <GlobalStyle />
       <AppContainer>
         <HomePage />
-        <BottomNav />
       </AppContainer>
     </>
   );

@@ -5,7 +5,6 @@ const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
   border-radius: clamp(16px, 4vw, 24px);
   padding: clamp(12px, 3.5vw, 16px) clamp(16px, 4vw, 20px);
-  margin: clamp(8px, 3vw, 14px) clamp(16px, 4vw, 20px);
   display: flex;
   align-items: center;
   justify-content: space-between;

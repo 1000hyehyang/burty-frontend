@@ -2,10 +2,10 @@
 import styled from "styled-components";
 import PolicyCard from "./PolicyCard";
 import PolicyTabs from "./PolicyTabs";
+import { FaChevronRight } from "react-icons/fa";
 
 const Section = styled.section`
-  padding: 0 clamp(16px, 4vw, 20px);
-  margin-top: clamp(24px, 5vw, 32px);
+  padding: 0;
 `;
 
 const Header = styled.div`
@@ -28,12 +28,6 @@ const More = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;
-
-  &::after {
-    content: ">";
-    font-weight: 500;
-    font-size: inherit;
-  }
 `;
 
 const ListWrapper = styled.div`
@@ -45,7 +39,9 @@ const PolicyList = () => {
     <Section>
       <Header>
         <Title>청년 정책 혜택</Title>
-        <More>더보기</More>
+        <More>
+          더보기 <FaChevronRight size={12} />
+        </More>
       </Header>
 
       <PolicyTabs />
