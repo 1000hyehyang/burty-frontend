@@ -33,7 +33,7 @@ const NavButton = styled(NavLink)`
   justify-content: center;
   gap: 6px;
   font-weight: 600;
-  font-size: clamp(11px, 3vw, 13px);
+  font-size: clamp(10px, 2.5vw, 12px);
   color: var(--variable-collection-text-300);
   text-decoration: none;
   cursor: pointer;

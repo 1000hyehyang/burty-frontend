@@ -55,7 +55,7 @@ const BookmarkButton = styled.button<{ active: boolean }>`
 
 const Title = styled.h3`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--variable-collection-text-100);
   margin: 0 0 8px 0;
 `;

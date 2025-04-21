@@ -17,7 +17,7 @@ const Header = styled.div`
 
 const Title = styled.h2`
   font-size: clamp(14px, 4vw, 16px);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--variable-collection-text-100);
 `;
 

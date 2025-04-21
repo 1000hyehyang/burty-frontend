@@ -1,24 +1,31 @@
 // 📄 components/Settlement/ContentSection.tsx
 import styled from "styled-components";
+import Example_1 from "../../assets/images/contents/ex-1.svg";
+import Example_2 from "../../assets/images/contents/ex-2.svg";
+import Example_3 from "../../assets/images/contents/ex-3.svg";
+import Example_4 from "../../assets/images/contents/ex-4.svg";
+import Example_5 from "../../assets/images/contents/ex-5.svg";
 
-const Section = styled.section`
-  margin-top: 32px;
-  padding: 0 20px;
+const Title = styled.h2`
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 600;
+  color: var(--variable-collection-text-100);
+  margin: 0;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-top: 16px;
 `;
 
 const ContentCard = styled.div`
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
   img {
     width: 100%;
     height: 100%;
@@ -28,23 +35,29 @@ const ContentCard = styled.div`
 
 const ContentSection = () => {
   return (
-    <Section>
-      <h3 style={{ fontWeight: 700, fontSize: "16px" }}>청년 콘텐츠</h3>
+    <>
+      <Title>청년 콘텐츠</Title>
       <Grid>
         <ContentCard>
-          <img src="/content/1.png" alt="컨텐츠1" />
+          <img src={Example_1} alt="컨텐츠1" />
         </ContentCard>
         <ContentCard>
-          <img src="/content/2.png" alt="컨텐츠2" />
+          <img src={Example_2} alt="컨텐츠2" />
         </ContentCard>
         <ContentCard>
-          <img src="/content/3.png" alt="컨텐츠3" />
+          <img src={Example_3} alt="컨텐츠3" />
         </ContentCard>
         <ContentCard>
-          <img src="/content/4.png" alt="컨텐츠4" />
+          <img src={Example_4} alt="컨텐츠4" />
+        </ContentCard>
+        <ContentCard>
+          <img src={Example_5} alt="컨텐츠5" />
+        </ContentCard>
+        <ContentCard>
+          <img src={Example_1} alt="컨텐츠6" />
         </ContentCard>
       </Grid>
-    </Section>
+    </>
   );
 };
 
