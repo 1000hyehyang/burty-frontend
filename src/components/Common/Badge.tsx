@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface BadgeProps {
   type?: "default" | "primary" | "positive" | "gray";
-  size?: "small" | "medium"; // ✅ 크기 확장
+  size?: "small" | "medium"; // 크기 확장
 }
 
 const getBadgeStyles = (type: BadgeProps["type"]) => {

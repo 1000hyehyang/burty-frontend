@@ -4,7 +4,8 @@ import styled from "styled-components";
 const AppContainer = styled.div`
   margin: 0 auto;
   width: 100%;
-  max-width: 500px;
+  min-width: 375px;
+  max-width: 400px;
   background-color: var(--variable-collection-bg-200);
   min-height: 100vh;
   display: flex;

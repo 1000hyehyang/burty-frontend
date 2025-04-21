@@ -12,7 +12,7 @@ const Nav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   background-color: var(--variable-collection-bg-100);
   display: flex;
@@ -51,8 +51,7 @@ const BottomNav = () => {
   return (
     <Nav>
       <NavButton to="/" end>
-        <AiFillHome />
-        홈
+        <AiFillHome />홈
       </NavButton>
       <NavButton to="/community">
         <MdGroups />
@@ -67,8 +66,7 @@ const BottomNav = () => {
         채용
       </NavButton>
       <NavButton to="/profile">
-        <HiUser />
-        내 정보
+        <HiUser />내 정보
       </NavButton>
     </Nav>
   );
