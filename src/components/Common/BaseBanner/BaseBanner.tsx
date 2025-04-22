@@ -53,7 +53,7 @@ const Subtitle = styled.p`
 
 const ButtonWrapper = styled.div`
   width: 100%;
-  margin-top: 16px;
+  margin-top: 8px;
 `;
 
 const BaseBanner = ({
