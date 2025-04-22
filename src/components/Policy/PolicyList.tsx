@@ -1,8 +1,14 @@
 // 📄 components/Policy/PolicyList.tsx
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import PolicyCard from "./PolicyCard";
 import PolicyTabs from "./PolicyTabs";
 import { FaChevronRight } from "react-icons/fa";
+import { dummyPolicies } from "../../mock/policies";
+
+interface PolicyListProps {
+  showMoreButton?: boolean; // 기본값 false로
+}
 
 const Section = styled.section`
   padding: 0;
@@ -34,37 +40,38 @@ const ListWrapper = styled.div`
   margin-top: clamp(16px, 4vw, 24px);
 `;
 
-const PolicyList = () => {
+const PolicyList = ({ showMoreButton = false }: PolicyListProps) => {
+  const navigate = useNavigate();
+
   return (
     <Section>
       <Header>
         <Title>청년 정책 혜택</Title>
-        <More>
-          더보기 <FaChevronRight size={12} />
-        </More>
+        {showMoreButton && (
+          <More onClick={() => navigate("/settlement/policy")}>
+            더보기 <FaChevronRight size={12} />
+          </More>
+        )}
       </Header>
 
       <PolicyTabs />
 
       <ListWrapper>
-        <PolicyCard
-          category="취업"
-          title="청년 전입 지원금"
-          description="미취업 청년의 구직활동 지원을 위한 지원금 사업입니다."
-          dateRange="2025.04.17 ~ 2025.04.30"
-          dday="D-7"
-        />
-        <PolicyCard
-          category="창업"
-          title="청년 창업 지원금"
-          description="청년 창업가의 창업 활동을 지원하는 사업입니다."
-          dateRange="2024.04.17 ~ 2024.04.30"
-          dday="마감"
-          isClosed
-        />
+        {dummyPolicies.map((policy, index) => (
+          <PolicyCard
+            key={index}
+            category={policy.category}
+            title={policy.title}
+            description={policy.description}
+            dateRange={policy.dateRange}
+            dday={policy.dday}
+            isClosed={policy.isClosed}
+          />
+        ))}
       </ListWrapper>
     </Section>
   );
 };
+
 
 export default PolicyList;

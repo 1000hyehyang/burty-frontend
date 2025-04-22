@@ -17,7 +17,7 @@ const NearbyCenterBanner = () => {
       }
       subtitle="내가 사는 지역 가까이, 청년 누구나 이용할 수 있는 공간."
       buttonText="가까운 청년 센터 알아 보기"
-      onClick={() => navigate("/centers")} 
+      onClick={() => navigate("/settlement/centers")} 
     />
   );
 };

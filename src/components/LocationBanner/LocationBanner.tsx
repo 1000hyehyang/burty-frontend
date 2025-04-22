@@ -54,7 +54,7 @@ const LocationBanner = ({ location, onChangeLocation }: LocationBannerProps) => 
         </LocationInfo>
       </TextGroup>
 
-      <PrimaryButton onClick={onChangeLocation} size="small">
+      <PrimaryButton onClick={onChangeLocation}>
         <MdMyLocation />
         위치 변경
       </PrimaryButton>

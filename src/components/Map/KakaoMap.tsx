@@ -1,11 +1,7 @@
 // 📄 components/Map/KakaoMap.tsx
 import { useEffect, useState } from "react";
 import { loadKakaoMapScript } from "./loadKakaoMap";
-
-const dummyCenters = [
-  { name: "청년이랑", lat: 36.3064, lng: 127.5711 },
-  { name: "청년내일센터", lat: 36.3043, lng: 127.5729 },
-];
+import { dummyYouthCenters } from "../../mock/youthCenters";
 
 const KakaoMap = () => {
   const [loaded, setLoaded] = useState(false);
@@ -26,9 +22,8 @@ const KakaoMap = () => {
 
     const map = new kakao.maps.Map(mapContainer, mapOption);
 
-    // 커스텀 마커 이미지
     const markerImageSrc = "/marker-center.png";
-    const imageSize = new kakao.maps.Size(20, 32); // 너비, 높이(px)
+    const imageSize = new kakao.maps.Size(20, 32);
     const imageOption = { offset: new kakao.maps.Point(20, 40) };
 
     const markerImage = new kakao.maps.MarkerImage(
@@ -37,11 +32,11 @@ const KakaoMap = () => {
       imageOption
     );
 
-    dummyCenters.forEach((center) => {
+    dummyYouthCenters.forEach((center) => {
       const marker = new kakao.maps.Marker({
         map,
         position: new kakao.maps.LatLng(center.lat, center.lng),
-        image: markerImage, // 커스텀 이미지 적용
+        image: markerImage,
       });
 
       const infowindow = new kakao.maps.InfoWindow({

@@ -8,7 +8,7 @@ const HomePage = () => (
   <>
     <GreetingCard username="김버티" subtitle="김버티님에게 딱 맞는 혜택이 도착했어요!" />
     <AiReportBanner />
-    <PolicyList />
+    <PolicyList showMoreButton/>
     <CommunityPostList />
   </>
 );

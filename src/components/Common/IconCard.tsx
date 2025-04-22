@@ -43,8 +43,8 @@ const Icon = styled.img`
   flex-shrink: 0;
 `;
 
-const IconCard = ({ text, iconSrc, alt = ""}: IconCardProps) => (
-  <Card>
+const IconCard = ({ text, iconSrc, alt = "", onClick }: IconCardProps) => (
+  <Card onClick={onClick}>
     <Text dangerouslySetInnerHTML={{ __html: text }} />
     <Icon src={iconSrc} alt={alt} />
   </Card>
