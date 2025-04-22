@@ -1,17 +1,26 @@
 // 📄 components/Community/CommunityPostList.tsx
 import styled from "styled-components";
 import CommunityPostCard from "./CommunityPostCard";
-import { dummyCommunityPosts } from "../../mock/communityPosts"; // 👈 추가
+import { dummyCommunityPosts } from "../../mock/communityPosts";
+
+interface Props {
+  mode?: "home" | "community"; // 기본값: community
+}
 
 const Section = styled.section`
   padding: 0;
   margin-bottom: clamp(64px, 8vw, 80px);
 `;
 
-const CommunityPostList = () => {
+const CommunityPostList = ({ mode = "community" }: Props) => {
+  // 인기순 정렬
+  const sorted = [...dummyCommunityPosts].sort((a, b) => b.likes - a.likes);
+
+  const postsToShow = mode === "home" ? sorted.slice(0, 3) : sorted;
+
   return (
     <Section>
-      {dummyCommunityPosts.map((post, index) => (
+      {postsToShow.map((post, index) => (
         <CommunityPostCard
           key={index}
           nickname={post.nickname}

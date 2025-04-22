@@ -22,11 +22,11 @@ const HomePage = () => {
       <PolicyList mode="home" />
 
       <SectionTitle
-        title="커뮤니티"
+        title="HOT 게시글"
         showMoreButton
         onClickMore={() => navigate("/community")}
       />
-      <CommunityPostList />
+      <CommunityPostList mode="home" />
     </>
   );
 };

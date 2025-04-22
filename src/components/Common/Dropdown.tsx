@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
-interface DropdownProps {
-  value: string;
-  options: string[];
-  onChange: (value: string) => void;
+interface DropdownProps<T extends string> {
+  value: T;
+  options: T[];
+  onChange: (value: T) => void;
 }
 
 const Wrapper = styled.div`
@@ -62,7 +62,11 @@ const ListItem = styled.li`
   }
 `;
 
-const Dropdown = ({ value, options, onChange }: DropdownProps) => {
+function Dropdown<T extends string>({
+  value,
+  options,
+  onChange,
+}: DropdownProps<T>) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -88,13 +92,10 @@ const Dropdown = ({ value, options, onChange }: DropdownProps) => {
       {open && (
         <List>
           {options.map((opt) => (
-            <ListItem
-              key={opt}
-              onClick={() => {
-                onChange(opt);
-                setOpen(false);
-              }}
-            >
+            <ListItem key={opt} onClick={() => {
+              onChange(opt);
+              setOpen(false);
+            }}>
               {opt}
             </ListItem>
           ))}
@@ -102,6 +103,6 @@ const Dropdown = ({ value, options, onChange }: DropdownProps) => {
       )}
     </Wrapper>
   );
-};
+}
 
 export default Dropdown;
