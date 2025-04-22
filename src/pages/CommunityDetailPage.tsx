@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { dummyCommunityPosts } from "../mock/communityPosts";
 import { dummyCommunityComments } from "../mock/communityComments";
 import CommunityPostDetail from "../components/Community/CommunityPostDetail";
+import SectionTitle from "../components/Common/SectionTitle";
 import CommentForm from "../components/Community/CommentForm";
 import CommentItem from "../components/Community/CommentItem";
 
@@ -18,13 +19,21 @@ const CommunityDetailPage = () => {
   return (
     <>
       <CommunityPostDetail post={post} />
-      <section>
-        <h3>댓글 {comments.length}개</h3>
-        <CommentForm />
-        {comments.map((comment) => (
-          <CommentItem key={comment.commentId} comment={comment} />
-        ))}
-      </section>
+      <SectionTitle
+        title={
+          <>
+            댓글{" "}
+            <span style={{ color: "var(--variable-collection-primary-100)" }}>
+              {comments.length}개
+            </span>
+          </>
+        }
+      />
+
+      <CommentForm />
+      {comments.map((comment) => (
+        <CommentItem key={comment.commentId} comment={comment} />
+      ))}
     </>
   );
 };

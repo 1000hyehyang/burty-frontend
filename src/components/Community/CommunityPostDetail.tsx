@@ -1,21 +1,45 @@
 // 📄 components/Community/CommunityPostDetail.tsx
 import styled from "styled-components";
-import { FaHeart, FaRegComment } from "react-icons/fa";
+import { useState } from "react";
+import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
 import { CommunityPost } from "../../mock/communityPosts";
 import Badge from "../Common/Badge";
 
 const Wrapper = styled.div`
   background: var(--variable-collection-bg-100);
-  padding: 16px;
+  padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+`;
+
+const ProfileImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #d9d9d9;
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const NameRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
   flex-wrap: wrap;
 `;
 
@@ -24,20 +48,20 @@ const Nickname = styled.span`
   font-size: 14px;
 `;
 
-const Time = styled.span`
-  font-size: 10px;
+const Time = styled.div`
+  font-size: 11px;
   color: #aaa;
+  margin-top: 2px;
 `;
 
 const Content = styled.p`
-  margin-top: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--variable-collection-text-300);
-  line-height: 1.4;
+  line-height: 1.6;
+  white-space: pre-line;
 `;
 
 const BottomRow = styled.div`
-  margin-top: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,7 +72,35 @@ const Stats = styled.div`
   gap: 16px;
   align-items: center;
   font-size: 13px;
-  color: var(--text-300);
+  color: #a9a9a9;
+
+  button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover svg {
+      stroke: var(--variable-collection-action-negative);
+    }
+
+    svg {
+      font-size: 16px;
+    }
+  }
+
+  .liked {
+    color: var(--variable-collection-action-negative);
+  }
+
+  .comment {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #999;
+  }
 `;
 
 const Buttons = styled.div`
@@ -56,10 +108,11 @@ const Buttons = styled.div`
   gap: 10px;
 
   button {
-    padding: 4px 8px;
-    font-size: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
     border-radius: 10px;
     font-weight: 500;
+    white-space: nowrap;
   }
 
   .edit {
@@ -68,35 +121,58 @@ const Buttons = styled.div`
 
   .delete {
     background: #fdd9d9;
-    color: var(--action-negative);
+    color: var(--variable-collection-action-negative);
   }
 `;
 
 interface Props {
   post: CommunityPost;
+  isMyPost?: boolean;
 }
 
-const CommunityPostDetail = ({ post }: Props) => {
+const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
+  const [likes, setLikes] = useState(post.likes);
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = () => {
+    if (liked) return;
+    setLikes((prev) => prev + 1);
+    setLiked(true);
+  };
+
   return (
     <Wrapper>
       <TopRow>
-        <Nickname>{post.nickname}</Nickname>
-        <Badge type="primary" size="small">{post.ageGroup}</Badge>
-        <Badge type="primary" size="small">{post.location}</Badge>
-        <Badge type="primary" size="small">{post.job}</Badge>
+        <ProfileImage src="/default-profile.png" />
+        <InfoBox>
+          <NameRow>
+            <Nickname>{post.nickname}</Nickname>
+            <Badge type="primary" size="small">{post.ageGroup}</Badge>
+            <Badge type="primary" size="small">{post.location}</Badge>
+            <Badge type="primary" size="small">{post.job}</Badge>
+          </NameRow>
+          <Time>{new Date(post.createdAt).toLocaleString()}</Time>
+        </InfoBox>
       </TopRow>
-      <Time>{new Date(post.createdAt).toLocaleString()}</Time>
+
       <Content>{post.content}</Content>
 
       <BottomRow>
         <Stats>
-          <span><FaHeart /> {post.likes}</span>
-          <span><FaRegComment /> {post.comments}</span>
+          <button onClick={handleLike} className={liked ? "liked" : ""}>
+            {liked ? <FaHeart /> : <FaRegHeart />} {likes}
+          </button>
+          <span className="comment">
+            <FaRegComment /> {post.comments}
+          </span>
         </Stats>
-        <Buttons>
-          <button className="edit">수정하기</button>
-          <button className="delete">삭제하기</button>
-        </Buttons>
+
+        {isMyPost && (
+          <Buttons>
+            <button className="edit">수정하기</button>
+            <button className="delete">삭제하기</button>
+          </Buttons>
+        )}
       </BottomRow>
     </Wrapper>
   );

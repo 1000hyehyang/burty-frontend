@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: -24px;
 `;
 
 const ScrollableRow = styled.div`

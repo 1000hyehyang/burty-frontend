@@ -5,28 +5,50 @@ import { useState } from "react";
 
 const Wrapper = styled.div`
   display: flex;
+  align-items: flex-start;
   gap: 12px;
-  align-items: center;
-  margin: 16px 0 24px;
+  padding: 16px;
+  margin-top: -16px;
 `;
 
 const Profile = styled.img`
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: #d9d9d9;
+  background-color: #333;
+  object-fit: cover;
+  flex-shrink: 0;
+`;
+
+const InputSection = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 const Input = styled.input`
-  flex: 1;
-  padding: 10px 12px;
-  border: 1px solid var(--variable-collection-bg-300);
-  border-radius: 12px;
-  font-size: 13px;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 12px;
+  color: var(--variable-collection-text-300);
+  border: none;
+  border-bottom: 1.5px solid #aaa;
+  background: transparent;
+  outline: none;
+
+  &:focus {
+    border-bottom: 1.5px solid var(--variable-collection-accent-100);
+    }
 
   &::placeholder {
     color: #aaa;
   }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const CommentForm = () => {
@@ -41,14 +63,21 @@ const CommentForm = () => {
   return (
     <Wrapper>
       <Profile src="/default-profile.png" />
-      <Input
-        placeholder="댓글을 입력하세요."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <PrimaryButton onClick={handleSubmit} size="small">댓글</PrimaryButton>
+      <InputSection>
+        <Input
+          placeholder="댓글을 입력하세요."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <ButtonBox>
+          <PrimaryButton onClick={handleSubmit} size="small">
+            댓글 작성하기
+          </PrimaryButton>
+        </ButtonBox>
+      </InputSection>
     </Wrapper>
   );
 };
 
 export default CommentForm;
+

@@ -1,9 +1,10 @@
 // 📄 components/Common/SectionTitle.tsx
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa";
 
 interface SectionTitleProps {
-  title: string;
+  title: ReactNode;
   showMoreButton?: boolean;
   onClickMore?: () => void;
 }
