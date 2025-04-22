@@ -13,12 +13,11 @@ interface PolicyCardProps {
   isClosed?: boolean;
 }
 
-const Card = styled.div<{ closed: boolean }>`
+const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
   border-radius: 16px;
   padding: 18px;
   margin-bottom: 16px;
-  opacity: ${({ closed }) => (closed ? 0.6 : 1)};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 `;
 
@@ -35,13 +34,13 @@ const TagGroup = styled.div`
   align-items: center;
 `;
 
-const BookmarkButton = styled.button<{ active: boolean }>`
+const BookmarkButton = styled.button<{ $active: boolean }>`
   all: unset;
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: ${({ active }) =>
-    active ? "#ECD089" : "var(--variable-collection-text-200)"};
+  color: ${({ $active }) =>
+    $active ? "#ECD089" : "var(--variable-collection-text-200)"};
   transition: color 0.2s;
 
   &:hover {
@@ -92,13 +91,13 @@ const PolicyCard = ({
   const toggleBookmark = () => setBookmarked((prev) => !prev);
 
   return (
-    <Card closed={isClosed}>
+    <Card>
       <Header>
         <TagGroup>
           <Badge type="primary">{category}</Badge>
           <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
-        <BookmarkButton active={bookmarked} onClick={toggleBookmark}>
+        <BookmarkButton $active={bookmarked} onClick={toggleBookmark}>
           {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </BookmarkButton>
       </Header>
