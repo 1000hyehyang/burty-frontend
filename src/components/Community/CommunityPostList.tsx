@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import CommunityPostCard from "./CommunityPostCard";
 import { dummyCommunityPosts } from "../../mock/communityPosts";
+import { dummyCommunityComments } from "../../mock/communityComments";
 import { useCommunityStore } from "../../store/useCommunityStore";
 
 interface Props {
@@ -40,20 +41,27 @@ const CommunityPostList = ({ mode = "community" }: Props) => {
 
   return (
     <Section>
-      {visiblePosts.map((post, index) => (
-        <CommunityPostCard
-          key={`${post.nickname}-${index}`}
-          nickname={post.nickname}
-          ageGroup={post.ageGroup}
-          location={post.location}
-          job={post.job}
-          content={post.content}
-          likes={post.likes}
-          comments={post.comments}
-          views={post.views}
-          createdAt={post.createdAt}
-        />
-      ))}
+      {visiblePosts.map((post) => {
+        const commentCount = dummyCommunityComments.filter(
+          (comment) => comment.postId === post.postId
+        ).length;
+
+        return (
+          <CommunityPostCard
+            key={post.postId}
+            postId={post.postId}
+            nickname={post.nickname}
+            ageGroup={post.ageGroup}
+            location={post.location}
+            job={post.job}
+            content={post.content}
+            likes={post.likes}
+            comments={commentCount}
+            views={post.views}
+            createdAt={post.createdAt}
+          />
+        );
+      })}
     </Section>
   );
 };

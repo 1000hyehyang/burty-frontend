@@ -1,0 +1,190 @@
+// 📄 src/mock/communityComments.ts
+
+export interface CommunityComment {
+    commentId: number;
+    postId: number;
+    nickname: string;
+    content: string;
+    createdAt: string;
+    likes: number;
+  }
+  
+  export const dummyCommunityComments: CommunityComment[] = [
+    {
+      commentId: 0,
+      postId: 0,
+      nickname: "롯데우승",
+      content: "공감합니다. 부산 같대이~",
+      createdAt: "2025-04-22T13:00:00Z",
+      likes: 10,
+    },
+    {
+      commentId: 1,
+      postId: 0,
+      nickname: "낭만청년",
+      content: "크 바다가 옆에 있는 출근길... 그것이 낭만이죠 ㅋㅋ",
+      createdAt: "2025-04-22T13:03:00Z",
+      likes: 8,
+    },
+    {
+      commentId: 2,
+      postId: 1,
+      nickname: "대전토박이",
+      content: "대전은 교통이 진짜 좋아요. 출퇴근 최고!",
+      createdAt: "2025-04-21T18:45:00Z",
+      likes: 4,
+    },
+    {
+      commentId: 3,
+      postId: 1,
+      nickname: "디자인하는사람",
+      content: "저도 대전에서 디자인 중인데 공감합니다!",
+      createdAt: "2025-04-21T19:01:00Z",
+      likes: 3,
+    },
+    {
+      commentId: 4,
+      postId: 2,
+      nickname: "춘천닭갈비",
+      content: "춘천은 진짜 힐링 그 자체입니다.",
+      createdAt: "2025-04-20T14:22:00Z",
+      likes: 6,
+    },
+    {
+      commentId: 5,
+      postId: 2,
+      nickname: "춘천러버",
+      content: "자연 좋아하시는 분들께 완전 추천드려요!",
+      createdAt: "2025-04-20T15:30:00Z",
+      likes: 5,
+    },
+    {
+      commentId: 6,
+      postId: 3,
+      nickname: "광주청년",
+      content: "광주도 살기 좋아요. 문화도 많고!",
+      createdAt: "2025-04-19T11:12:00Z",
+      likes: 4,
+    },
+    {
+      commentId: 7,
+      postId: 3,
+      nickname: "광주러버",
+      content: "광주 양림동 산책 추천~",
+      createdAt: "2025-04-19T11:45:00Z",
+      likes: 2,
+    },
+    {
+      commentId: 8,
+      postId: 4,
+      nickname: "제주지기",
+      content: "제주 출근길 바다는 사랑이죠 🌊",
+      createdAt: "2025-04-18T10:00:00Z",
+      likes: 7,
+    },
+    {
+      commentId: 9,
+      postId: 4,
+      nickname: "제주청년",
+      content: "생활비는 좀 비싸지만 자연으로 힐링합니다!",
+      createdAt: "2025-04-18T11:25:00Z",
+      likes: 3,
+    },
+    {
+      commentId: 10,
+      postId: 5,
+      nickname: "서울탈출",
+      content: "서울 벗어나니 살만 나네요",
+      createdAt: "2025-04-17T17:40:00Z",
+      likes: 6,
+    },
+    {
+      commentId: 11,
+      postId: 5,
+      nickname: "숨쉬고싶다",
+      content: "공기 질이 진짜 다르더라고요",
+      createdAt: "2025-04-17T18:00:00Z",
+      likes: 2,
+    },
+    {
+      commentId: 12,
+      postId: 6,
+      nickname: "울산정착러",
+      content: "울산은 조용하고 좋습니다",
+      createdAt: "2025-04-16T10:00:00Z",
+      likes: 3,
+    },
+    {
+      commentId: 13,
+      postId: 6,
+      nickname: "울산직딩",
+      content: "저도 울산 살면서 많이 힐링됐어요",
+      createdAt: "2025-04-16T11:12:00Z",
+      likes: 1,
+    },
+    {
+      commentId: 14,
+      postId: 7,
+      nickname: "전주비빔밥",
+      content: "전주는 진짜 음식 천국입니다!",
+      createdAt: "2025-04-15T13:40:00Z",
+      likes: 5,
+    },
+    {
+      commentId: 15,
+      postId: 7,
+      nickname: "전주사람",
+      content: "걷기 좋은 도시예요. 추천합니다.",
+      createdAt: "2025-04-15T15:21:00Z",
+      likes: 2,
+    },
+    {
+      commentId: 16,
+      postId: 8,
+      nickname: "이사왔어요",
+      content: "이직 때문에 왔는데 의외로 만족 중!",
+      createdAt: "2025-04-14T19:00:00Z",
+      likes: 4,
+    },
+    {
+      commentId: 17,
+      postId: 8,
+      nickname: "초보정착러",
+      content: "아직 적응 중인데 응원 감사합니다 🙏",
+      createdAt: "2025-04-14T19:15:00Z",
+      likes: 3,
+    },
+    {
+      commentId: 18,
+      postId: 9,
+      nickname: "서울러버",
+      content: "다시 서울 가고 싶긴 해요 ㅠㅠ",
+      createdAt: "2025-04-13T20:00:00Z",
+      likes: 2,
+    },
+    {
+      commentId: 19,
+      postId: 9,
+      nickname: "지방좋아",
+      content: "그래도 한 번쯤 내려와 보는 것도 좋아요!",
+      createdAt: "2025-04-13T20:22:00Z",
+      likes: 1,
+    },
+    {
+      commentId: 20,
+      postId: 10,
+      nickname: "부산사람",
+      content: "부산은 진짜 바다와 함께하는 도시입니다.",
+      createdAt: "2025-04-12T14:00:00Z",
+      likes: 8,
+    },
+    {
+      commentId: 21,
+      postId: 9,
+      nickname: "부산러버",
+      content: "부산은 진짜 힐링이죠!",
+      createdAt: "2025-04-12T14:30:00Z",
+      likes: 4,
+    }
+  ];
+  

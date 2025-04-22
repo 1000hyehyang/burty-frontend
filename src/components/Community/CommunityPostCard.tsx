@@ -4,8 +4,10 @@ import { getTimeAgo } from "../../utils/timeAgo";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaHeart, FaRegComment, FaEye } from "react-icons/fa";
 import Badge from "../Common/Badge";
+import { useNavigate } from "react-router-dom";
 
 interface CommunityPostCardProps {
+  postId: number;
   nickname: string;
   ageGroup: string;
   location: string;
@@ -97,6 +99,7 @@ const Stat = styled.div`
 `;
 
 const CommunityPostCard = ({
+  postId,
   nickname,
   ageGroup,
   location,
@@ -108,8 +111,14 @@ const CommunityPostCard = ({
   createdAt,
   profileImage,
 }: CommunityPostCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/community/${postId}`);
+  };
+
   return (
-    <Card>
+    <Card onClick={handleClick}>
       <ProfileImage
         src={profileImage || "/default-profile.png"}
         alt={`${nickname} 프로필`}

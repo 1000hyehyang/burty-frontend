@@ -1,5 +1,6 @@
 // 📄 src/mock/communityPosts.ts
 export interface CommunityPost {
+  postId: number;
   nickname: string;
   ageGroup: string;
   location: string;
@@ -11,53 +12,10 @@ export interface CommunityPost {
   createdAt: string;
 }
 
-const nicknames = ["김버티", "이서울", "박춘천", "최광주", "홍제주", "한대전", "유전주", "강울산"];
-const ageGroups = ["10대", "20대", "30대"] as const;
-const locations = ["서울", "부산", "대전", "광주", "제주", "춘천", "울산", "전주"] as const;
-const jobs = ["IT", "디자인", "마케팅", "행정", "교육", "영업"] as const;
-const sampleContents = [
-  "지역 생활비가 적당해서 저축이 가능해졌어요.",
-  "사람들이 친절하고 정이 많아요.",
-  "서울보다 확실히 스트레스가 줄었어요.",
-  "처음엔 걱정했지만 지금은 만족해요.",
-  "여기 와서 삶의 질이 달라졌어요.",
-  "일과 삶의 균형이 잡히는 느낌이에요.",
-  "자연 환경이 좋아서 힐링 돼요.",
-  "대중교통은 조금 불편하지만 익숙해지면 괜찮아요.",
-];
-
-const getRandom = <T>(arr: readonly T[]): T =>
-  arr[Math.floor(Math.random() * arr.length)];
-
-const generateRandomPost = (i: number): CommunityPost => {
-  const nickname = getRandom(nicknames) + i;
-  const ageGroup = getRandom(ageGroups);
-  const location = getRandom(locations);
-  const job = getRandom(jobs);
-  const content = getRandom(sampleContents);
-  const likes = Math.floor(Math.random() * 30);
-  const comments = Math.floor(Math.random() * 10);
-  const views = Math.floor(Math.random() * 100);
-  const createdAt = new Date(
-    Date.now() - Math.floor(Math.random() * 1000 * 60 * 60 * 24 * 30)
-  ).toISOString();
-
-  return {
-    nickname,
-    ageGroup,
-    location,
-    job,
-    content: `${location}에서 ${job} 중입니다. ${content}`,
-    likes,
-    comments,
-    views,
-    createdAt,
-  };
-};
-
 export const dummyCommunityPosts: CommunityPost[] = [
   {
-    nickname: "김버티",
+    postId: 0,
+    nickname: "홍창기",
     ageGroup: "20대",
     location: "부산",
     job: "IT",
@@ -68,7 +26,8 @@ export const dummyCommunityPosts: CommunityPost[] = [
     createdAt: "2025-04-22T09:00:00Z",
   },
   {
-    nickname: "이서울",
+    postId: 1,
+    nickname: "김현수",
     ageGroup: "30대",
     location: "대전",
     job: "디자인",
@@ -79,7 +38,8 @@ export const dummyCommunityPosts: CommunityPost[] = [
     createdAt: "2025-04-21T16:00:00Z",
   },
   {
-    nickname: "박춘천",
+    postId: 2,
+    nickname: "오스틴",
     ageGroup: "20대",
     location: "춘천",
     job: "마케팅",
@@ -89,5 +49,102 @@ export const dummyCommunityPosts: CommunityPost[] = [
     views: 40,
     createdAt: "2025-04-20T12:00:00Z",
   },
-  ...Array.from({ length: 30 }, (_, i) => generateRandomPost(i)),
+
+  {
+    postId: 3,
+    nickname: "문보경",
+    ageGroup: "10대",
+    location: "제주",
+    job: "디자인",
+    content: "제주에서 디자인 중입니다. 처음엔 걱정했지만 지금은 만족해요.",
+    likes: 9,
+    comments: 1,
+    views: 106,
+    createdAt: "2025-03-28T16:40:34.561Z",
+  },
+  {
+    postId: 4,
+    nickname: "오지환",
+    ageGroup: "30대",
+    location: "울산",
+    job: "IT",
+    content:
+      "울산에서 IT 중입니다. 지역 생활비가 적당해서 저축이 가능해졌어요.",
+    likes: 7,
+    comments: 3,
+    views: 49,
+    createdAt: "2025-04-04T14:40:34.561Z",
+  },
+  {
+    postId: 5,
+    nickname: "박동원",
+    ageGroup: "30대",
+    location: "광주",
+    job: "영업",
+    content: "광주에서 영업 중입니다. 자연 환경이 좋아서 힐링 돼요.",
+    likes: 12,
+    comments: 7,
+    views: 95,
+    createdAt: "2025-04-13T09:40:34.561Z",
+  },
+  {
+    postId: 6,
+    nickname: "박해민",
+    ageGroup: "30대",
+    location: "울산",
+    job: "마케팅",
+    content: "울산에서 마케팅 중입니다. 여기 와서 삶의 질이 달라졌어요.",
+    likes: 9,
+    comments: 3,
+    views: 117,
+    createdAt: "2025-04-11T06:40:34.561Z",
+  },
+  {
+    postId: 7,
+    nickname: "문성주",
+    ageGroup: "20대",
+    location: "부산",
+    job: "마케팅",
+    content: "부산에서 마케팅 중입니다. 일과 삶의 균형이 잡히는 느낌이에요.",
+    likes: 24,
+    comments: 4,
+    views: 25,
+    createdAt: "2025-03-28T19:40:34.561Z",
+  },
+  {
+    postId: 8,
+    nickname: "신민재",
+    ageGroup: "20대",
+    location: "부산",
+    job: "교육",
+    content: "부산에서 교육 중입니다. 여기 와서 삶의 질이 달라졌어요.",
+    likes: 25,
+    comments: 5,
+    views: 93,
+    createdAt: "2025-04-14T11:40:34.561Z",
+  },
+  {
+    postId: 9,
+    nickname: "구본혁",
+    ageGroup: "10대",
+    location: "광주",
+    job: "마케팅",
+    content: "광주에서 마케팅 중입니다. 사람들이 친절하고 정이 많아요.",
+    likes: 12,
+    comments: 1,
+    views: 68,
+    createdAt: "2025-04-12T19:40:34.561Z",
+  },
+  {
+    postId: 10,
+    nickname: "송찬의",
+    ageGroup: "10대",
+    location: "춘천",
+    job: "마케팅",
+    content: "춘천에서 마케팅 중입니다. 처음엔 걱정했지만 지금은 만족해요.",
+    likes: 26,
+    comments: 4,
+    views: 109,
+    createdAt: "2025-03-30T13:40:34.561Z",
+  }
 ];
