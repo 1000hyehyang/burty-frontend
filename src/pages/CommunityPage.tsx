@@ -1,12 +1,7 @@
 // 📄 pages/CommunityPage.tsx
 import { useState } from "react";
-import styled from "styled-components";
 import CommunityFilters from "../components/Community/CommunityFilters";
 import CommunityPostList from "../components/Community/CommunityPostList";
-
-const PageWrapper = styled.div`
-  background-color: var(--variable-collection-bg-200);
-`;
 
 const CommunityPage = () => {
   const [sort, setSort] = useState("인기순");
@@ -22,7 +17,7 @@ const CommunityPage = () => {
   };
 
   return (
-    <PageWrapper>
+    <>
       <CommunityFilters
         sort={sort}
         region={region}
@@ -35,7 +30,7 @@ const CommunityPage = () => {
         onReset={resetFilters}
       />
       <CommunityPostList />
-    </PageWrapper>
+    </>
   );
 };
 

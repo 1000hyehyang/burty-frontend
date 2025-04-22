@@ -1,21 +1,14 @@
 // 📄 pages/KeywordSearchPage.tsx
-import styled from "styled-components";
 import LocationBanner from "../components/LocationBanner/LocationBanner";
 import PolicyList from "../components/Policy/PolicyList";
 import SearchBar from "../components/Common/SearchBar";
 import { useState } from "react";
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 4vw, 24px);
-`;
-
 const KeywordSearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <PageContainer>
+    <>
       {/* 위치 배너 */}
       <LocationBanner
         location="경기도 구리시"
@@ -32,7 +25,7 @@ const KeywordSearchPage = () => {
 
       {/* 정책 목록 */}
       <PolicyList />
-    </PageContainer>
+    </>
   );
 };
 
