@@ -1,13 +1,25 @@
+// 📄 components/Common/PrimaryButton.tsx
 import styled from "styled-components";
 
-const PrimaryButton = styled.button`
-  margin-top: 4px;
-  padding: 12px 0;
-  width: 100%;
+interface PrimaryButtonProps {
+  fullWidth?: boolean;
+}
+
+const PrimaryButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "fullWidth",
+})<PrimaryButtonProps>`
+  box-sizing: border-box;
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "fit-content")};
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
   font-size: 12px;
   font-weight: 600;
-  font-family: "Pretendard", sans-serif;
   color: var(--variable-collection-bg-100);
+
   background: linear-gradient(
     90deg,
     var(--variable-collection-primary-200),
@@ -19,6 +31,10 @@ const PrimaryButton = styled.button`
 
   &:hover {
     opacity: 0.9;
+  }
+
+  svg {
+    font-size: 16px;
   }
 `;
 

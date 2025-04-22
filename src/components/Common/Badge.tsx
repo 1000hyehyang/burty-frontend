@@ -47,6 +47,10 @@ const getBadgeSize = (size: BadgeProps["size"]) => {
 };
 
 const Badge = styled.span<BadgeProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: max-content;
   font-size: ${({ size }) => getBadgeSize(size).font};
   font-weight: 600;
   padding: ${({ size }) => getBadgeSize(size).padding};

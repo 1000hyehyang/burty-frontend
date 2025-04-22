@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { loadKakaoMapScript } from "./loadKakaoMap";
 
 const dummyCenters = [
-  { name: "청년이랑", lat: 37.5665, lng: 126.978 },
-  { name: "청년내일센터", lat: 35.1796, lng: 129.0756 },
+  { name: "청년이랑", lat: 36.3064, lng: 127.5711 },
+  { name: "청년내일센터", lat: 36.3043, lng: 127.5729 },
 ];
 
 const KakaoMap = () => {

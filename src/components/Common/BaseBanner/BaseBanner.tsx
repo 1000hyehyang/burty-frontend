@@ -24,7 +24,6 @@ const Banner = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 `;
@@ -32,15 +31,13 @@ const Banner = styled.section`
 const Image = styled.img`
   width: 90px;
   height: auto;
-  margin-bottom: 2px;
 `;
 
 const Title = styled.h2`
   font-size: 16px;
   font-weight: 600;
-  font-family: "Pretendard", sans-serif;
   color: var(--variable-collection-text-100);
-  line-height: 1.35;
+  margin-top: 4px;
 
   span {
     color: var(--variable-collection-accent-100);
@@ -50,9 +47,13 @@ const Title = styled.h2`
 const Subtitle = styled.p`
   font-size: 12px;
   font-weight: 500;
-  font-family: "Pretendard", sans-serif;
   color: var(--variable-collection-text-300);
-  margin-top: -8px;
+  margin-top: -4px;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 100%;
+  margin-top: 16px;
 `;
 
 const BaseBanner = ({
@@ -68,7 +69,11 @@ const BaseBanner = ({
       <Image src={iconSrc} alt={iconAlt} />
       <Title>{title}</Title>
       {subtitle && <Subtitle>{subtitle}</Subtitle>}
-      <PrimaryButton onClick={onClick}>{buttonText}</PrimaryButton>
+      <ButtonWrapper>
+        <PrimaryButton fullWidth onClick={onClick}>
+          {buttonText}
+        </PrimaryButton>
+      </ButtonWrapper>
     </Banner>
   );
 };
