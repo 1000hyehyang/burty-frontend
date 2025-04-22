@@ -1,7 +1,7 @@
 // 📄 components/Policy/PolicyCard.tsx
 import styled from "styled-components";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { useState } from "react";
 import Badge from "../Common/Badge";
 
@@ -86,11 +86,9 @@ const PolicyCard = ({
   description,
   dateRange,
   dday,
-  isClosed = false,
+  isClosed,
 }: PolicyCardProps) => {
   const [bookmarked, setBookmarked] = useState(false);
-
-  const toggleBookmark = () => setBookmarked((prev) => !prev);
 
   return (
     <Card>
@@ -99,7 +97,10 @@ const PolicyCard = ({
           <Badge type="primary">{category}</Badge>
           <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
-        <BookmarkButton $active={bookmarked} onClick={toggleBookmark}>
+        <BookmarkButton
+          $active={bookmarked}
+          onClick={() => setBookmarked((prev) => !prev)}
+        >
           {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </BookmarkButton>
       </Header>

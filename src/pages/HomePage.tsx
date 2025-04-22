@@ -1,10 +1,10 @@
 // 📄 pages/HomePage.tsx
 import { useNavigate } from "react-router-dom";
+import SectionTitle from "../components/Common/SectionTitle";
+import PolicyList from "../components/Policy/PolicyList";
+import CommunityPostList from "../components/Community/CommunityPostList";
 import GreetingCard from "../components/GreetingCard/GreetingCard";
 import AiReportBanner from "../components/AiReportBanner/AiReportBanner";
-import PolicyList from "../components/Policy/PolicyList";
-import SectionTitle from "../components/Common/SectionTitle";
-import CommunityPostList from "../components/Community/CommunityPostList";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const HomePage = () => {
         showMoreButton
         onClickMore={() => navigate("/settlement/policy")}
       />
-      <PolicyList />
+      <PolicyList mode="home" />
 
       <SectionTitle
         title="커뮤니티"

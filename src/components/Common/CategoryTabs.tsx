@@ -1,3 +1,4 @@
+// 📄 components/Common/CategoryTabs.tsx
 import styled from "styled-components";
 
 interface CategoryTabsProps {
@@ -26,17 +27,22 @@ const Tab = styled.button<{ $active: boolean }>`
     $active ? "var(--variable-collection-bg-100)" : "transparent"};
   border-radius: 5px;
   color: ${({ $active }) =>
-    $active ? "var(--variable-collection-text-100)" : "var(--variable-collection-text-300)"};
+    $active
+      ? "var(--variable-collection-text-100)"
+      : "var(--variable-collection-text-300)"};
   text-align: center;
   transition: all 0.2s ease-in-out;
-
   &:hover {
     background-color: ${({ $active }) =>
       $active ? "var(--variable-collection-bg-100)" : "rgba(255,255,255,0.3)"};
   }
 `;
 
-const CategoryTabs = ({ categories, selected, onSelect }: CategoryTabsProps) => {
+const CategoryTabs = ({
+  categories,
+  selected,
+  onSelect,
+}: CategoryTabsProps) => {
   return (
     <Container>
       {categories.map((cat) => (

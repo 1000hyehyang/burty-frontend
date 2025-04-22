@@ -1,17 +1,18 @@
 // 📄 components/Policy/PolicyTabs.tsx
-import { useState } from "react";
+import { usePolicyStore, PolicyCategory } from "../../store/usePolicyStore";
 import CategoryTabs from "../Common/CategoryTabs";
 
-const categories = ["전체", "일자리", "주거", "교육", "복지"];
+const categories: PolicyCategory[] = ["전체", "일자리", "주거", "교육", "복지"];
 
 const PolicyTabs = () => {
-  const [selected, setSelected] = useState("전체");
+  const selected = usePolicyStore((s) => s.selectedCategory);
+  const setSelected = usePolicyStore((s) => s.setCategory);
 
   return (
     <CategoryTabs
       categories={categories}
       selected={selected}
-      onSelect={setSelected}
+      onSelect={(val) => setSelected(val as PolicyCategory)}
     />
   );
 };
