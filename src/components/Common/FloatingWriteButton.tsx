@@ -8,7 +8,7 @@ const Button = styled.button`
   position: sticky;
   bottom: 80px;
   left: 100%;
-  margin-right: 24px;
+  margin-right: 8px;
   z-index: 10;
   width: 56px;
   height: 56px;
