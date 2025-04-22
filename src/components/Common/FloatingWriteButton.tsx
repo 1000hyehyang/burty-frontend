@@ -1,49 +1,35 @@
-// 📄 components/Common/FloatingWriteButton.tsx
+// 📄 components/Community/FloatingWriteButton.tsx
 import styled from "styled-components";
-import { FaPen } from "react-icons/fa6";
 import hoverAndClickEffect from "./mixins/hoverAndClickEffect";
+import { FaPen } from "react-icons/fa";
+import { useModalStore } from "../../store/store/useModalStore";
 
 const Button = styled.button`
   position: sticky;
   bottom: 80px;
   left: 100%;
-  transform: translateX(-5%);
-
-  background: linear-gradient(
+  margin-right: 24px;
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+    background: linear-gradient(
     90deg,
     var(--variable-collection-primary-200),
     var(--variable-collection-primary-100)
   );
-
-  color: var(--variable-collection-bg-100);
-  border: none;
+  box-shadow: 0 4px 8px rgba(80, 161, 104, 0.25);
+  color: white;
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-
-  z-index: 99;
-
+  align-items: center;
   ${hoverAndClickEffect}
-
-  svg {
-    font-size: 18px;
-  }
 `;
 
-interface Props {
-  onClick: () => void;
-}
-
-const FloatingWriteButton = ({ onClick }: Props) => {
+const FloatingWriteButton = () => {
+  const open = useModalStore((state) => state.open);
   return (
-    <Button onClick={onClick} aria-label="글쓰기 버튼">
+    <Button onClick={open}>
       <FaPen />
     </Button>
   );
