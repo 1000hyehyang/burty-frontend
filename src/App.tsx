@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import SettlementPage from "./pages/SettlementPage";
 import CenterMapPage from "./pages/CenterMapPage";
 import KeywordSearchPage from "./pages/KeywordSearchPage";
+import CommunityPage from "./pages/CommunityPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="settlement" element={<SettlementPage />} />
           <Route path="/settlement/centers" element={<CenterMapPage />} />
           <Route path="/settlement/policy" element={<KeywordSearchPage />} />
+          <Route path="community" element={<CommunityPage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
