@@ -39,7 +39,11 @@ const NavButton = styled(NavLink)`
   cursor: pointer;
 
   svg {
-    font-size: clamp(20px, 5vw, 24px);
+    font-size: clamp(18px, 4.5vw, 20px);
+  }
+
+  &:hover {
+    color: var(--variable-collection-primary-100);
   }
 
   &.active {

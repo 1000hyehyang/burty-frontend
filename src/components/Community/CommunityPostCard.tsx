@@ -1,5 +1,6 @@
 // 📄 components/Community/CommunityPostCard.tsx
 import styled from "styled-components";
+import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaHeart, FaRegComment, FaEye } from "react-icons/fa";
 import Badge from "../Common/Badge";
 
@@ -24,7 +25,7 @@ const Card = styled.div`
   display: flex;
   gap: clamp(10px, 4vw, 14px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  cursor: pointer;
+  ${hoverAndClickEffect}
 `;
 
 const ProfileImage = styled.img`
@@ -106,7 +107,10 @@ const CommunityPostCard = ({
 }: CommunityPostCardProps) => {
   return (
     <Card>
-      <ProfileImage src={profileImage || "/default-profile.png"} alt={`${nickname} 프로필`} />
+      <ProfileImage
+        src={profileImage || "/default-profile.png"}
+        alt={`${nickname} 프로필`}
+      />
       <ContentBox>
         <TopRow>
           <Nickname>{nickname}</Nickname>

@@ -1,5 +1,6 @@
 // 📄 components/Common/PrimaryButton.tsx
 import styled from "styled-components";
+import hoverAndClickEffect from "./mixins/hoverAndClickEffect";
 
 interface PrimaryButtonProps {
   fullWidth?: boolean;
@@ -29,9 +30,7 @@ const PrimaryButton = styled.button.withConfig({
   box-shadow: 0 4px 8px rgba(80, 161, 104, 0.25);
   transition: opacity 0.2s;
 
-  &:hover {
-    opacity: 0.9;
-  }
+  ${hoverAndClickEffect}
 
   svg {
     font-size: 16px;

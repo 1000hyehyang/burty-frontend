@@ -1,8 +1,9 @@
 // 📄 components/Policy/PolicyCard.tsx
 import styled from "styled-components";
+import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { useState } from "react";
-import Badge from "../Common/Badge"; // ✅ 추가
+import Badge from "../Common/Badge";
 
 interface PolicyCardProps {
   category: string;
@@ -19,6 +20,7 @@ const Card = styled.div`
   padding: 18px;
   margin-bottom: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  ${hoverAndClickEffect}
 `;
 
 const Header = styled.div`

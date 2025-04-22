@@ -1,5 +1,6 @@
 // 📄 components/Common/IconCard.tsx
 import styled from "styled-components";
+import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 
 interface IconCardProps {
   text: string;
@@ -25,7 +26,7 @@ const Card = styled.div`
   gap: 4px;
   padding: 8px 16px;
   overflow: hidden;
-  cursor: pointer;
+  ${hoverAndClickEffect}
 `;
 
 const Text = styled.div`
