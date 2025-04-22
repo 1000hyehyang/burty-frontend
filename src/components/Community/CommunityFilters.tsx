@@ -24,7 +24,6 @@ const ScrollableRow = styled.div`
 const ResetWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-right: 2px;
 `;
 
 const sortOptions = ["인기순", "최신순"] as const;

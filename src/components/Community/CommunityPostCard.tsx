@@ -1,5 +1,6 @@
 // 📄 components/Community/CommunityPostCard.tsx
 import styled from "styled-components";
+import { getTimeAgo } from "../../utils/timeAgo";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaHeart, FaRegComment, FaEye } from "react-icons/fa";
 import Badge from "../Common/Badge";
@@ -13,6 +14,7 @@ interface CommunityPostCardProps {
   likes: number;
   comments: number;
   views: number;
+  createdAt: string; 
   profileImage?: string;
 }
 
@@ -103,6 +105,7 @@ const CommunityPostCard = ({
   likes,
   comments,
   views,
+  createdAt,
   profileImage,
 }: CommunityPostCardProps) => {
   return (
@@ -124,7 +127,7 @@ const CommunityPostCard = ({
             {job}
           </Badge>
         </TopRow>
-        <Time>47분전</Time>
+        <Time>{getTimeAgo(createdAt)}</Time>
         <ContentText>{content}</ContentText>
         <Footer>
           <Stat>
