@@ -4,6 +4,7 @@ import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import Badge from "../Common/Badge";
 import { useBookmarkStore } from "../../store/useBookmarkStore";
 import { Policy } from "../../types/policy";
+import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -11,6 +12,7 @@ const Card = styled.div`
   padding: 18px;
   margin-bottom: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  ${hoverAndClickEffect}
 `;
 
 const Header = styled.div`
