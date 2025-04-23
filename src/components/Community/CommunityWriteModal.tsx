@@ -72,7 +72,7 @@ const Textarea = styled.textarea`
 
 const ButtonGroup = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
 `;
 
