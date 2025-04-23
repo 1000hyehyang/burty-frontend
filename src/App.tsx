@@ -10,6 +10,7 @@ import CommunityPage from "./pages/CommunityPage";
 import CommunityDetailPage from "./pages/CommunityDetailPage";
 import JobsPage from "./pages/JobsPage";
 import MyPage from "./pages/MyPage";
+import BookmarkedPoliciesPage from "./pages/BookmarkedPoliciesPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/community/:postId" element={<CommunityDetailPage />} />
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/profile" element={<MyPage />} />
+          <Route path="/profile/bookmarks" element={<BookmarkedPoliciesPage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

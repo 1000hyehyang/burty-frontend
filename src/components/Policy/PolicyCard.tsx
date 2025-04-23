@@ -13,7 +13,6 @@ interface PolicyCardProps {
   dateRange: string;
   dday: string;
   isClosed?: boolean;
-  showBookmarkIcon?: boolean;
 }
 
 const Card = styled.div`
@@ -90,7 +89,6 @@ const PolicyCard = ({
   dateRange,
   dday,
   isClosed,
-  showBookmarkIcon = true,
 }: PolicyCardProps) => {
   const isBookmarked = useBookmarkStore((state) => state.isBookmarked(id));
   const toggleBookmark = useBookmarkStore((state) => state.toggleBookmark);
@@ -102,16 +100,13 @@ const PolicyCard = ({
           <Badge type="primary">{category}</Badge>
           <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
-        {showBookmarkIcon && (
-          <BookmarkButton
+        <BookmarkButton
             $active={isBookmarked}
             onClick={() => toggleBookmark(id)}
           >
             {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
           </BookmarkButton>
-        )}
       </Header>
-
       <Title>{title}</Title>
       <Description>{description}</Description>
       <Info>일자리 &gt; {category} ｜ 고용노동부 ｜ 18~34세</Info>
