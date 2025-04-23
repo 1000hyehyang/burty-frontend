@@ -8,14 +8,12 @@ interface CategoryTabsProps {
 }
 
 const Container = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   background-color: var(--variable-collection-bg-300);
   border-radius: 10px;
-  width: 100%;
   padding: 6px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4px;
 `;
 
 const Tab = styled.button<{ $active: boolean }>`
@@ -32,6 +30,7 @@ const Tab = styled.button<{ $active: boolean }>`
       : "var(--variable-collection-text-300)"};
   text-align: center;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     background-color: ${({ $active }) =>
       $active ? "var(--variable-collection-bg-100)" : "rgba(255,255,255,0.3)"};
