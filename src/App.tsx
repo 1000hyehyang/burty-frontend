@@ -14,6 +14,7 @@ import BookmarkedPoliciesPage from "./pages/BookmarkedPoliciesPage";
 import MyPostsPage from "./pages/MyPostsPage";
 import LikedPostsPage from "./pages/LikedPostsPage";
 import CommentedPostsPage from "./pages/CommentedPostsPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/community/my-posts" element={<MyPostsPage />} />
           <Route path="/community/liked" element={<LikedPostsPage />} />
           <Route path="/community/comments" element={<CommentedPostsPage />} />
+          <Route path="/profile/edit" element={<EditProfilePage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

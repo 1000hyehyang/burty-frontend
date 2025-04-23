@@ -99,7 +99,7 @@ const MyPage = () => {
         <MenuListItem
           icon={<FaUserEdit style={{ color: "var(--variable-collection-primary-100)" }} />}
           label="개인정보 수정"
-          onClick={() => alert("개인정보 수정")}
+          onClick={() => navigate("/profile/edit")}
         />
         <MenuListItem
           icon={<FaSignOutAlt style={{ color: "var(--variable-collection-action-negative)" }}/>}
