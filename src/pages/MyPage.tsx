@@ -4,6 +4,16 @@ import MyProfileCard from "../components/Profile/MyProfileCard";
 import MyPageTabs from "../components/Profile/MyPageTabs";
 import SectionTitle from "../components/Common/SectionTitle";
 import MyBookmarkedPolicyList from "../components/Profile/MyBookmarkedPolicyList";
+import {
+  FaUserEdit,
+  FaSignOutAlt,
+  FaTrash,
+  FaRegComment,
+  FaHeart,
+  FaRegEdit,
+} from "react-icons/fa";
+import MenuListGroup from "../components/Common/MenuListGroup";
+import MenuListItem from "../components/Common/MenuListItem";
 import { useMyPageStore } from "../store/useMyPageStore";
 
 const Divider = styled.hr`
@@ -51,16 +61,45 @@ const MyPage = () => {
 
       {selectedTab === "커뮤니티" && (
         <>
-          <SectionTitle title="내 커뮤니티 활동" />
-          <p style={{ fontSize: "14px", color: "#999" }}>
-            작성한 게시글, 댓글 보기 예정
-          </p>
+          <MenuListGroup>
+            <MenuListItem
+              icon={<FaRegEdit color="#50A168" />}
+              label="내가 쓴 글"
+              onClick={() => alert("내가 쓴 글")}
+            />
+            <MenuListItem
+              icon={<FaHeart color="#50A168" />}
+              label="좋아요 한 글"
+              onClick={() => alert("좋아요 한 글")}
+            />
+            <MenuListItem
+              icon={<FaRegComment color="#50A168" />}
+              label="댓글 단 글"
+              onClick={() => alert("댓글 단 글")}
+            />
+          </MenuListGroup>
           <Divider />
         </>
       )}
 
       <SectionTitle title="설정" />
-      {/* 설정 메뉴: 개인정보 수정, 로그아웃, 회원탈퇴 등 추가 예정 */}
+      <MenuListGroup>
+        <MenuListItem
+          icon={<FaUserEdit color="#50A168" />}
+          label="개인정보 수정"
+          onClick={() => alert("개인정보 수정")}
+        />
+        <MenuListItem
+          icon={<FaSignOutAlt color="#B86969" />}
+          label="로그아웃"
+          onClick={() => alert("로그아웃")}
+        />
+        <MenuListItem
+          icon={<FaTrash color="#B86969" />}
+          label="회원 탈퇴"
+          onClick={() => alert("회원 탈퇴")}
+        />
+      </MenuListGroup>
     </>
   );
 };
