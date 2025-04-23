@@ -11,6 +11,9 @@ import CommunityDetailPage from "./pages/CommunityDetailPage";
 import JobsPage from "./pages/JobsPage";
 import MyPage from "./pages/MyPage";
 import BookmarkedPoliciesPage from "./pages/BookmarkedPoliciesPage";
+import MyPostsPage from "./pages/MyPostsPage";
+import LikedPostsPage from "./pages/LikedPostsPage";
+import CommentedPostsPage from "./pages/CommentedPostsPage";
 
 function App() {
   return (
@@ -26,7 +29,13 @@ function App() {
           <Route path="/community/:postId" element={<CommunityDetailPage />} />
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/profile" element={<MyPage />} />
-          <Route path="/profile/bookmarks" element={<BookmarkedPoliciesPage />} />
+          <Route
+            path="/profile/bookmarks"
+            element={<BookmarkedPoliciesPage />}
+          />
+          <Route path="/community/my-posts" element={<MyPostsPage />} />
+          <Route path="/community/liked" element={<LikedPostsPage />} />
+          <Route path="/community/comments" element={<CommentedPostsPage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

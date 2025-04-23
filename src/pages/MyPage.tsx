@@ -63,19 +63,31 @@ const MyPage = () => {
         <>
           <MenuListGroup>
             <MenuListItem
-              icon={<FaRegEdit color="#50A168" />}
+              icon={
+                <FaRegEdit
+                  style={{ color: "var(--variable-collection-primary-100)" }}
+                />
+              }
               label="내가 쓴 글"
-              onClick={() => alert("내가 쓴 글")}
+              onClick={() => navigate("/community/my-posts")}
             />
             <MenuListItem
-              icon={<FaHeart color="#50A168" />}
+              icon={
+                <FaHeart
+                  style={{ color: "var(--variable-collection-primary-100)" }}
+                />
+              }
               label="좋아요 한 글"
-              onClick={() => alert("좋아요 한 글")}
+              onClick={() => navigate("/community/liked")}
             />
             <MenuListItem
-              icon={<FaRegComment color="#50A168" />}
+              icon={
+                <FaRegComment
+                  style={{ color: "var(--variable-collection-primary-100)" }}
+                />
+              }
               label="댓글 단 글"
-              onClick={() => alert("댓글 단 글")}
+              onClick={() => navigate("/community/comments")}
             />
           </MenuListGroup>
           <Divider />
@@ -85,17 +97,17 @@ const MyPage = () => {
       <SectionTitle title="설정" />
       <MenuListGroup>
         <MenuListItem
-          icon={<FaUserEdit color="#50A168" />}
+          icon={<FaUserEdit style={{ color: "var(--variable-collection-primary-100)" }} />}
           label="개인정보 수정"
           onClick={() => alert("개인정보 수정")}
         />
         <MenuListItem
-          icon={<FaSignOutAlt color="#B86969" />}
+          icon={<FaSignOutAlt style={{ color: "var(--variable-collection-action-negative)" }}/>}
           label="로그아웃"
           onClick={() => alert("로그아웃")}
         />
         <MenuListItem
-          icon={<FaTrash color="#B86969" />}
+          icon={<FaTrash style={{ color: "var(--variable-collection-action-negative)" }}/>}
           label="회원 탈퇴"
           onClick={() => alert("회원 탈퇴")}
         />
