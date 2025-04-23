@@ -1,19 +1,9 @@
-// 📄 components/Policy/PolicyCard.tsx
+// 📁 components/Policy/PolicyCard.tsx
 import styled from "styled-components";
-import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { useBookmarkStore } from "../../store/useBookmarkStore";
 import Badge from "../Common/Badge";
-
-interface PolicyCardProps {
-  id: number;
-  category: string;
-  title: string;
-  description: string;
-  dateRange: string;
-  dday: string;
-  isClosed?: boolean;
-}
+import { useBookmarkStore } from "../../store/useBookmarkStore";
+import { Policy } from "../../types/policy";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -21,7 +11,6 @@ const Card = styled.div`
   padding: 18px;
   margin-bottom: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  ${hoverAndClickEffect}
 `;
 
 const Header = styled.div`
@@ -42,8 +31,7 @@ const BookmarkButton = styled.button<{ $active: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  color: ${({ $active }) =>
-    $active ? "#ECD089" : "var(--variable-collection-text-200)"};
+  color: ${({ $active }) => ($active ? "#ECD089" : "#ccc")};
   transition: color 0.2s;
 
   &:hover {
@@ -64,7 +52,6 @@ const Title = styled.h3`
 
 const Description = styled.p`
   font-size: 14px;
-  font-weight: 500;
   color: var(--variable-collection-text-300);
   margin: 0 0 10px 0;
 `;
@@ -89,9 +76,9 @@ const PolicyCard = ({
   dateRange,
   dday,
   isClosed,
-}: PolicyCardProps) => {
-  const isBookmarked = useBookmarkStore((state) => state.isBookmarked(id));
-  const toggleBookmark = useBookmarkStore((state) => state.toggleBookmark);
+}: Policy) => {
+  const isBookmarked = useBookmarkStore((s) => s.isBookmarked(id));
+  const toggleBookmark = useBookmarkStore((s) => s.toggleBookmark);
 
   return (
     <Card>
@@ -100,12 +87,9 @@ const PolicyCard = ({
           <Badge type="primary">{category}</Badge>
           <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
-        <BookmarkButton
-            $active={isBookmarked}
-            onClick={() => toggleBookmark(id)}
-          >
-            {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
-          </BookmarkButton>
+        <BookmarkButton $active={isBookmarked} onClick={() => toggleBookmark(id)}>
+          {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+        </BookmarkButton>
       </Header>
       <Title>{title}</Title>
       <Description>{description}</Description>

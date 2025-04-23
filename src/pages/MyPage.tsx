@@ -15,11 +15,10 @@ const Divider = styled.hr`
 const MyPage = () => {
   const navigate = useNavigate();
   const categories = ["찜 목록", "히스토리", "커뮤니티"];
-  const selected = "찜 목록";
+  const selected = "찜 목록"; // 현재 선택된 탭
 
   return (
     <>
-      {/* 추후 마이 정보 카드 컴포넌트도 여기에 삽입 */}
       <CategoryTabs
         categories={categories}
         selected={selected}
@@ -31,12 +30,12 @@ const MyPage = () => {
         showMoreButton
         onClickMore={() => navigate("/profile/bookmarks")}
       />
-      <MyBookmarkedPolicyList />
+      <MyBookmarkedPolicyList limit={2} />
 
       <Divider />
 
       <SectionTitle title="설정" />
-      {/* 개인정보수정, 로그아웃, 회원탈퇴 UI 추가 예정 */}
+      {/* 설정 메뉴: 개인정보 수정, 로그아웃, 회원탈퇴 등 추후 추가 */}
     </>
   );
 };

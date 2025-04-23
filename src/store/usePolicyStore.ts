@@ -1,4 +1,4 @@
-// 📄 store/usePolicyStore.ts
+// 📁 store/usePolicyStore.ts
 import { create } from "zustand";
 
 export type PolicyCategory = "전체" | "일자리" | "주거" | "교육" | "복지";

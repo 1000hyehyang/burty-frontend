@@ -1,14 +1,14 @@
-// 📄 components/Policy/PolicyList.tsx
+// 📁 components/Policy/PolicyList.tsx
 import styled from "styled-components";
 import PolicyTabs from "./PolicyTabs";
 import PolicyCard from "./PolicyCard";
+import { Policy } from "../../types/policy";
 import { usePolicyStore } from "../../store/usePolicyStore";
-import { dummyPolicies } from "../../mock/policies";
-
-type PolicyListMode = "home" | "all";
 
 interface Props {
-  mode?: PolicyListMode;
+  policies: Policy[];
+  showTabs?: boolean;
+  limit?: number;
 }
 
 const Section = styled.section`
@@ -19,22 +19,22 @@ const ListWrapper = styled.div`
   margin-top: clamp(16px, 4vw, 24px);
 `;
 
-const PolicyList = ({ mode = "home" }: Props) => {
+const PolicyList = ({ policies, showTabs = false, limit }: Props) => {
   const selectedCategory = usePolicyStore((s) => s.selectedCategory);
 
-  const filtered = dummyPolicies.filter((p) => {
+  const filtered = policies.filter((p) => {
     if (selectedCategory === "전체") return true;
     return p.category === selectedCategory;
   });
 
-  const displayPolicies = mode === "home" ? filtered.slice(0, 2) : filtered;
+  const display = limit ? filtered.slice(0, limit) : filtered;
 
   return (
     <Section>
-      <PolicyTabs />
+      {showTabs && <PolicyTabs />}
       <ListWrapper>
-        {displayPolicies.map((policy, index) => (
-          <PolicyCard key={index} {...policy} />
+        {display.map((policy) => (
+          <PolicyCard key={policy.id} {...policy} />
         ))}
       </ListWrapper>
     </Section>

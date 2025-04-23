@@ -5,6 +5,7 @@ import PolicyList from "../components/Policy/PolicyList";
 import CommunityPostList from "../components/Community/CommunityPostList";
 import GreetingCard from "../components/GreetingCard/GreetingCard";
 import AiReportBanner from "../components/AiReportBanner/AiReportBanner";
+import { dummyPolicies } from "../mock/policies";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomePage = () => {
         showMoreButton
         onClickMore={() => navigate("/settlement/policy")}
       />
-      <PolicyList mode="home" />
+      <PolicyList policies={dummyPolicies} showTabs limit={2} />
 
       <SectionTitle
         title="HOT 게시글"

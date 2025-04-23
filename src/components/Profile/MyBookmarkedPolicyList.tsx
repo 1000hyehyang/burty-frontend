@@ -1,46 +1,27 @@
-// 📄 components/Profile/MyBookmarkedPolicyList.tsx
+// 📁 components/Profile/MyBookmarkedPolicyList.tsx
 import styled from "styled-components";
-import PolicyCard from "../Policy/PolicyCard";
 import { dummyPolicies } from "../../mock/policies";
 import { useBookmarkStore } from "../../store/useBookmarkStore";
-
-interface Props {
-  expanded?: boolean; // 더보기 여부
-}
+import { selectBookmarkedPolicies } from "../../utils/selectBookmarkedPolicies";
+import PolicyList from "../Policy/PolicyList";
 
 const ListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: -24px;
 `;
 
-const EmptyMessage = styled.p`
-  font-size: 13px;
-  color: var(--variable-collection-text-300);
-`;
-
-const MyBookmarkedPolicyList = ({ expanded = false }: Props) => {
-  const bookmarkedIds = useBookmarkStore((state) => state.bookmarkedIds);
-
-  const bookmarkedPolicies = dummyPolicies.filter((p) =>
-    bookmarkedIds.includes(p.id)
-  );
-
-  const displayed = expanded
-    ? bookmarkedPolicies
-    : bookmarkedPolicies.slice(0, 2); // 마이페이지에서는 2개 제한
+const MyBookmarkedPolicyList = ({ limit = 2 }: { limit?: number }) => {
+  const bookmarkedIds = useBookmarkStore((s) => s.bookmarkedIds);
+  const bookmarked = selectBookmarkedPolicies(dummyPolicies, bookmarkedIds);
 
   return (
     <ListWrapper>
-      {displayed.length === 0 ? (
-        <EmptyMessage>찜한 정책이 없습니다.</EmptyMessage>
+      {bookmarked.length === 0 ? (
+        <p>찜한 정책이 없습니다.</p>
       ) : (
-        displayed.map((policy) => (
-          <PolicyCard key={policy.id} {...policy} />
-        ))
+        <PolicyList policies={bookmarked} limit={limit} />
       )}
     </ListWrapper>
   );
 };
 
-export default MyBookmarkedPolicyList; 
+export default MyBookmarkedPolicyList;
