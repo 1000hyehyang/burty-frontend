@@ -55,11 +55,23 @@ const CommentText = styled.p`
 
 const BottomRow = styled.div`
   display: flex;
-  justify-content: flex-end;
-  gap: 16px;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   font-size: 13px;
   color: #999;
+`;
+
+const ButtonGroupLeft = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+const ButtonGroupRight = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
 `;
 
 const IconButton = styled.button`
@@ -68,7 +80,7 @@ const IconButton = styled.button`
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  color: #999;
+  color: #aaa;
 
   svg {
     font-size: 14px;
@@ -79,13 +91,39 @@ const IconButton = styled.button`
   }
 `;
 
+const EditButton = styled.button`
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+`;
+
+const DeleteButton = styled(EditButton)`
+  background: #fdd9d9;
+  color: var(--variable-collection-action-negative);
+`;
+
 interface Props {
   comment: CommunityComment;
+  currentUserNickname?: string; // 현재 로그인된 사용자 닉네임
 }
 
-const CommentItem = ({ comment }: Props) => {
+const CommentItem = ({ comment, currentUserNickname }: Props) => {
+  const isMyComment = comment.nickname === currentUserNickname;
+
   const handleReport = () => {
-    alert("신고되었습니다."); // 나중에 API 연동 가능
+    alert("신고되었습니다.");
+  };
+
+  const handleEdit = () => {
+    alert("수정하기 기능은 추후 구현 예정입니다.");
+  };
+
+  const handleDelete = () => {
+    alert("삭제하기 기능은 추후 구현 예정입니다.");
   };
 
   return (
@@ -94,28 +132,31 @@ const CommentItem = ({ comment }: Props) => {
       <ContentBox>
         <TopRow>
           <Nickname>{comment.nickname}</Nickname>
-          <Badge type="primary" size="small">
-            {comment.ageGroup}
-          </Badge>
-          <Badge type="primary" size="small">
-            {comment.location}
-          </Badge>
-          <Badge type="primary" size="small">
-            {comment.job}
-          </Badge>
+          <Badge type="primary" size="small">{comment.ageGroup}</Badge>
+          <Badge type="primary" size="small">{comment.location}</Badge>
+          <Badge type="primary" size="small">{comment.job}</Badge>
         </TopRow>
         <Time>{getTimeAgo(comment.createdAt)}</Time>
         <CommentText>{comment.content}</CommentText>
-        <BottomRow>
-          <LikeButton
-            initialLikes={comment.likes}
-            fontSize={13}
-            iconSize={14}
-          />
 
-          <IconButton onClick={handleReport}>
-            <MdReport /> 신고하기
-          </IconButton>
+        <BottomRow>
+          {/* 왼쪽: 내 댓글이면 수정/삭제 */}
+          <ButtonGroupLeft>
+            {isMyComment && (
+              <>
+                <EditButton onClick={handleEdit}>수정하기</EditButton>
+                <DeleteButton onClick={handleDelete}>삭제하기</DeleteButton>
+              </>
+            )}
+          </ButtonGroupLeft>
+
+          {/* 오른쪽: 좋아요 + 신고 */}
+          <ButtonGroupRight>
+            <LikeButton initialLikes={comment.likes} fontSize={13} iconSize={14} />
+            <IconButton onClick={handleReport}>
+              <MdReport /> 신고하기
+            </IconButton>
+          </ButtonGroupRight>
         </BottomRow>
       </ContentBox>
     </Wrapper>

@@ -107,12 +107,35 @@ const Buttons = styled.div`
   }
 `;
 
+const EditButton = styled.button`
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--variable-collection-text-300);
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+`;
+
+const DeleteButton = styled(EditButton)`
+  background: #fdd9d9;
+  color: var(--variable-collection-action-negative);
+`;
+
 interface Props {
   post: CommunityPost;
   isMyPost?: boolean;
 }
 
 const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
+  const handleEdit = () => {
+    alert("게시글 수정하기는 추후 구현됩니다.");
+  };
+
+  const handleDelete = () => {
+    alert("게시글 삭제하기는 추후 구현됩니다.");
+  };
 
   return (
     <Wrapper>
@@ -121,9 +144,15 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
         <InfoBox>
           <NameRow>
             <Nickname>{post.nickname}</Nickname>
-            <Badge type="primary" size="small">{post.ageGroup}</Badge>
-            <Badge type="primary" size="small">{post.location}</Badge>
-            <Badge type="primary" size="small">{post.job}</Badge>
+            <Badge type="primary" size="small">
+              {post.ageGroup}
+            </Badge>
+            <Badge type="primary" size="small">
+              {post.location}
+            </Badge>
+            <Badge type="primary" size="small">
+              {post.job}
+            </Badge>
           </NameRow>
           <Time>{new Date(post.createdAt).toLocaleString()}</Time>
         </InfoBox>
@@ -133,7 +162,7 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
 
       <BottomRow>
         <Stats>
-        <LikeButton initialLikes={post.likes} />
+          <LikeButton initialLikes={post.likes} />
           <span className="comment">
             <FaRegComment /> {post.comments}
           </span>
@@ -141,8 +170,8 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
 
         {isMyPost && (
           <Buttons>
-            <button className="edit">수정하기</button>
-            <button className="delete">삭제하기</button>
+            <EditButton onClick={handleEdit}>수정하기</EditButton>
+            <DeleteButton onClick={handleDelete}>삭제하기</DeleteButton>
           </Buttons>
         )}
       </BottomRow>

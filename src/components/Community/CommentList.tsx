@@ -17,7 +17,7 @@ const CommentList = ({ comments }: Props) => {
   return (
     <ListWrapper>
       {comments.map((comment) => (
-        <CommentItem key={comment.commentId} comment={comment} />
+        <CommentItem key={comment.commentId} comment={comment} currentUserNickname="대구사람" />
       ))}
     </ListWrapper>
   );
