@@ -13,7 +13,7 @@ const CenterMapPage = () => {
       />
       <KakaoMap />
       <SectionTitle title="청년센터 목록" showMoreButton={false} />
-      <YouthCenterList />;
+      <YouthCenterList />
     </>
   );
 };

@@ -1,8 +1,8 @@
 // 📄 components/Community/CommunityPostDetail.tsx
 import styled from "styled-components";
-import { useState } from "react";
-import { FaHeart, FaRegHeart, FaRegComment } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa";
 import { CommunityPost } from "../../mock/communityPosts";
+import LikeButton from "../Common/LikeButton";
 import Badge from "../Common/Badge";
 
 const Wrapper = styled.div`
@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -74,25 +73,8 @@ const Stats = styled.div`
   font-size: 13px;
   color: #a9a9a9;
 
-  button {
-    all: unset;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    transition: color 0.2s;
-
-    &:hover svg {
-      stroke: var(--variable-collection-action-negative);
-    }
-
-    svg {
-      font-size: 16px;
-    }
-  }
-
-  .liked {
-    color: var(--variable-collection-action-negative);
+  svg {
+    font-size: 16px;
   }
 
   .comment {
@@ -131,14 +113,6 @@ interface Props {
 }
 
 const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
-  const [likes, setLikes] = useState(post.likes);
-  const [liked, setLiked] = useState(false);
-
-  const handleLike = () => {
-    if (liked) return;
-    setLikes((prev) => prev + 1);
-    setLiked(true);
-  };
 
   return (
     <Wrapper>
@@ -159,9 +133,7 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
 
       <BottomRow>
         <Stats>
-          <button onClick={handleLike} className={liked ? "liked" : ""}>
-            {liked ? <FaHeart /> : <FaRegHeart />} {likes}
-          </button>
+        <LikeButton initialLikes={post.likes} />
           <span className="comment">
             <FaRegComment /> {post.comments}
           </span>

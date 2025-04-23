@@ -5,7 +5,7 @@ import { dummyCommunityComments } from "../mock/communityComments";
 import CommunityPostDetail from "../components/Community/CommunityPostDetail";
 import SectionTitle from "../components/Common/SectionTitle";
 import CommentForm from "../components/Community/CommentForm";
-import CommentItem from "../components/Community/CommentItem";
+import CommentList from "../components/Community/CommentList";
 
 const CommunityDetailPage = () => {
   const { postId } = useParams();
@@ -29,11 +29,8 @@ const CommunityDetailPage = () => {
           </>
         }
       />
-
       <CommentForm />
-      {comments.map((comment) => (
-        <CommentItem key={comment.commentId} comment={comment} />
-      ))}
+      <CommentList comments={comments} />
     </>
   );
 };

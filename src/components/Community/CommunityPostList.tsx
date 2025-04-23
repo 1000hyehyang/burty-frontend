@@ -11,7 +11,6 @@ interface Props {
 
 const Section = styled.section`
   padding: 0;
-  margin-bottom: clamp(16px, 2vw, 24px);
 `;
 
 const CommunityPostList = ({ mode = "community" }: Props) => {

@@ -7,7 +7,6 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: clamp(64px, 8vw, 80px);
 `;
 
 const ContentCard = styled.div`

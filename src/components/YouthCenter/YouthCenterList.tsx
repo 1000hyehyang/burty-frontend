@@ -7,7 +7,6 @@ const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: clamp(32px, 12vw, 64px);
 `;
 
 const YouthCenterList = () => {

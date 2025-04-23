@@ -15,6 +15,7 @@ const AppContainer = styled.div`
 export const InnerContainer = styled.div`
   margin-top: clamp(12px, 3vw, 20px);
   padding: 0 20px;
+  padding-bottom: clamp(80px, 15vw, 96px);
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 4vw, 24px);

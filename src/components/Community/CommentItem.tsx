@@ -1,46 +1,82 @@
 // 📄 components/Community/CommentItem.tsx
 import styled from "styled-components";
+import LikeButton from "../Common/LikeButton";
+import { MdReport } from "react-icons/md";
 import { CommunityComment } from "../../mock/communityComments";
 import Badge from "../Common/Badge";
-import { FaHeart } from "react-icons/fa";
+import { getTimeAgo } from "../../utils/timeAgo";
 
-const Box = styled.div`
+const Wrapper = styled.div`
   background: var(--variable-collection-bg-100);
   padding: 14px 16px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  margin-bottom: 12px;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 12px;
+`;
+
+const ProfileImage = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #d9d9d9;
+  flex-shrink: 0;
+`;
+
+const ContentBox = styled.div`
+  flex: 1;
 `;
 
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
   flex-wrap: wrap;
+  gap: 6px;
 `;
 
 const Nickname = styled.span`
   font-weight: 600;
-  font-size: 12px;
-`;
-
-const Time = styled.span`
-  font-size: 10px;
-  color: #aaa;
-`;
-
-const Content = styled.p`
   font-size: 13px;
-  margin: 4px 0 12px;
+`;
+
+const Time = styled.div`
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 2px;
+`;
+
+const CommentText = styled.p`
+  font-size: 12px;
   color: var(--variable-collection-text-300);
+  margin: 8px 0 12px;
+  line-height: 1.4;
 `;
 
 const BottomRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #aaa;
+  justify-content: flex-end;
+  gap: 16px;
+  align-items: center;
+  font-size: 13px;
+  color: #999;
+`;
+
+const IconButton = styled.button`
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: #999;
+
+  svg {
+    font-size: 14px;
+  }
+
+  &:hover {
+    color: var(--variable-collection-action-negative);
+  }
 `;
 
 interface Props {
@@ -48,21 +84,41 @@ interface Props {
 }
 
 const CommentItem = ({ comment }: Props) => {
+  const handleReport = () => {
+    alert("신고되었습니다."); // 나중에 API 연동 가능
+  };
+
   return (
-    <Box>
-      <TopRow>
-        <Nickname>{comment.nickname}</Nickname>
-        <Badge type="primary" size="small">20대</Badge>
-        <Badge type="primary" size="small">부산</Badge>
-        <Badge type="primary" size="small">IT 개발</Badge>
-      </TopRow>
-      <Time>{new Date(comment.createdAt).toLocaleString()}</Time>
-      <Content>{comment.content}</Content>
-      <BottomRow>
-        <span><FaHeart /> {comment.likes}</span>
-        <span>신고하기</span>
-      </BottomRow>
-    </Box>
+    <Wrapper>
+      <ProfileImage src="/default-profile.png" alt="프로필 이미지" />
+      <ContentBox>
+        <TopRow>
+          <Nickname>{comment.nickname}</Nickname>
+          <Badge type="primary" size="small">
+            {comment.ageGroup}
+          </Badge>
+          <Badge type="primary" size="small">
+            {comment.location}
+          </Badge>
+          <Badge type="primary" size="small">
+            {comment.job}
+          </Badge>
+        </TopRow>
+        <Time>{getTimeAgo(comment.createdAt)}</Time>
+        <CommentText>{comment.content}</CommentText>
+        <BottomRow>
+          <LikeButton
+            initialLikes={comment.likes}
+            fontSize={13}
+            iconSize={14}
+          />
+
+          <IconButton onClick={handleReport}>
+            <MdReport /> 신고하기
+          </IconButton>
+        </BottomRow>
+      </ContentBox>
+    </Wrapper>
   );
 };
 
