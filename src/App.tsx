@@ -9,6 +9,7 @@ import KeywordSearchPage from "./pages/KeywordSearchPage";
 import CommunityPage from "./pages/CommunityPage";
 import CommunityDetailPage from "./pages/CommunityDetailPage";
 import JobsPage from "./pages/JobsPage";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="settlement" element={<SettlementPage />} />
+          <Route path="/settlement" element={<SettlementPage />} />
           <Route path="/settlement/centers" element={<CenterMapPage />} />
           <Route path="/settlement/policy" element={<KeywordSearchPage />} />
-          <Route path="community" element={<CommunityPage />} />
+          <Route path="/community" element={<CommunityPage />} />
           <Route path="/community/:postId" element={<CommunityDetailPage />} />
           <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/profile" element={<MyPage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

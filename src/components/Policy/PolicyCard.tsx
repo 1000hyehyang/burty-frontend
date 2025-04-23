@@ -2,16 +2,18 @@
 import styled from "styled-components";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { useState } from "react";
+import { useBookmarkStore } from "../../store/useBookmarkStore";
 import Badge from "../Common/Badge";
 
 interface PolicyCardProps {
+  id: number;
   category: string;
   title: string;
   description: string;
   dateRange: string;
   dday: string;
   isClosed?: boolean;
+  showBookmarkIcon?: boolean;
 }
 
 const Card = styled.div`
@@ -81,14 +83,17 @@ const Date = styled.p`
 `;
 
 const PolicyCard = ({
+  id,
   category,
   title,
   description,
   dateRange,
   dday,
   isClosed,
+  showBookmarkIcon = true,
 }: PolicyCardProps) => {
-  const [bookmarked, setBookmarked] = useState(false);
+  const isBookmarked = useBookmarkStore((state) => state.isBookmarked(id));
+  const toggleBookmark = useBookmarkStore((state) => state.toggleBookmark);
 
   return (
     <Card>
@@ -97,12 +102,14 @@ const PolicyCard = ({
           <Badge type="primary">{category}</Badge>
           <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
         </TagGroup>
-        <BookmarkButton
-          $active={bookmarked}
-          onClick={() => setBookmarked((prev) => !prev)}
-        >
-          {bookmarked ? <FaBookmark /> : <FaRegBookmark />}
-        </BookmarkButton>
+        {showBookmarkIcon && (
+          <BookmarkButton
+            $active={isBookmarked}
+            onClick={() => toggleBookmark(id)}
+          >
+            {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+          </BookmarkButton>
+        )}
       </Header>
 
       <Title>{title}</Title>
