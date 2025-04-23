@@ -1,6 +1,7 @@
 // 📄 pages/MyPage.tsx
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import MyProfileCard from "../components/Profile/MyProfileCard";
 import CategoryTabs from "../components/Common/CategoryTabs";
 import SectionTitle from "../components/Common/SectionTitle";
 import MyBookmarkedPolicyList from "../components/Profile/MyBookmarkedPolicyList";
@@ -19,6 +20,11 @@ const MyPage = () => {
 
   return (
     <>
+      <MyProfileCard
+        name="김버티"
+        region="서울특별시 관악구"
+        ageLabel="32세 (1992년생)"
+      />
       <CategoryTabs
         categories={categories}
         selected={selected}
