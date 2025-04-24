@@ -16,6 +16,7 @@ import MyPostsPage from "./pages/MyPostsPage";
 import LikedPostsPage from "./pages/LikedPostsPage";
 import CommentedPostsPage from "./pages/CommentedPostsPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import LoginPage from "./pages/LoginPage";
 import { useCommunityStore } from "./store/community/useCommunityStore";
 import { dummyCommunityPosts } from "./mock/communityPosts";
 import { dummyCommunityComments } from "./mock/communityComments";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/community/liked" element={<LikedPostsPage />} />
           <Route path="/community/comments" element={<CommentedPostsPage />} />
           <Route path="/profile/edit" element={<EditProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
           {/* 앞으로 추가될 페이지들 */}
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
