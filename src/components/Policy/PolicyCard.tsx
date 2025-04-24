@@ -5,6 +5,7 @@ import Badge from "../Common/Badge";
 import { useBookmarkStore } from "../../store/global/useBookmarkStore";
 import { Policy } from "../../types/policy";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -70,33 +71,36 @@ const Date = styled.p`
   margin: 0;
 `;
 
-const PolicyCard = ({
-  id,
-  category,
-  title,
-  description,
-  dateRange,
-  dday,
-  isClosed,
-}: Policy) => {
-  const isBookmarked = useBookmarkStore((s) => s.isBookmarked(id));
+const PolicyCard = (policy: Policy) => {
+  const navigate = useNavigate();
+  const isBookmarked = useBookmarkStore((s) => s.isBookmarked(policy.id));
   const toggleBookmark = useBookmarkStore((s) => s.toggleBookmark);
 
+  const handleClick = () => {
+    navigate(`/policy/${policy.id}`);
+  };
+
   return (
-    <Card>
+    <Card onClick={handleClick}>
       <Header>
         <TagGroup>
-          <Badge type="primary">{category}</Badge>
-          <Badge type={isClosed ? "gray" : "positive"}>{dday}</Badge>
+          <Badge type="primary">{policy.category}</Badge>
+          <Badge type={policy.isClosed ? "gray" : "positive"}>{policy.dday}</Badge>
         </TagGroup>
-        <BookmarkButton $active={isBookmarked} onClick={() => toggleBookmark(id)}>
+        <BookmarkButton
+          $active={isBookmarked}
+          onClick={(e) => {
+            e.stopPropagation(); // 카드 클릭 막기
+            toggleBookmark(policy.id);
+          }}
+        >
           {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
         </BookmarkButton>
       </Header>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-      <Info>일자리 &gt; {category} ｜ 고용노동부 ｜ 18~34세</Info>
-      <Date>신청기간: {dateRange}</Date>
+      <Title>{policy.title}</Title>
+      <Description>{policy.description}</Description>
+      <Info>일자리 &gt; {policy.category} ｜ 고용노동부 ｜ 18~34세</Info>
+      <Date>신청기간: {policy.dateRange}</Date>
     </Card>
   );
 };

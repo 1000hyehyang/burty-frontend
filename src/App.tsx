@@ -5,6 +5,7 @@ import GlobalStyle from "./components/Layout/GlobalStyle";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import SettlementPage from "./pages/SettlementPage";
+import PolicyDetailPage from "./pages/PolicyDetailPage";
 import CenterMapPage from "./pages/CenterMapPage";
 import KeywordSearchPage from "./pages/KeywordSearchPage";
 import CommunityPage from "./pages/CommunityPage";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/settlement" element={<SettlementPage />} />
           <Route path="/settlement/centers" element={<CenterMapPage />} />
           <Route path="/settlement/policy" element={<KeywordSearchPage />} />
+          <Route path="/policy/:id" element={<PolicyDetailPage />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/community/:postId" element={<CommunityDetailPage />} />
           <Route path="/jobs" element={<JobsPage />} />

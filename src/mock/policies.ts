@@ -19,6 +19,7 @@ export const dummyPolicies: Policy[] = [
     dateRange: "2025.04.17 ~ 2025.04.30",
     dday: "D-7",
     bookmarked: false,
+    isClosed: false,
   },
   {
     id: 1,
