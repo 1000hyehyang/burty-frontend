@@ -1,7 +1,6 @@
 // 📄 components/Common/Form/SelectInput.tsx
 import styled from "styled-components";
 import { FaChevronDown } from "react-icons/fa";
-import React from "react";
 
 const SelectBlock = styled.div`
   display: flex;
@@ -50,40 +49,32 @@ const IconWrapper = styled.div`
   }
 `;
 
-interface SelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectInputProps {
   label: string;
+  value: string;
   options: string[];
-  placeholder?: string;
+  onChange: (val: string) => void;
 }
 
-const SelectInput = ({
-  label,
-  options,
-  placeholder = "선택하세요",
-  value,
-  defaultValue,
-  ...props
-}: SelectInputProps) => {
-  return (
-    <SelectBlock>
-      <Label>{label}</Label>
-      <SelectWrapper>
-        <Select value={value} defaultValue={defaultValue} {...props}>
-          <option value="" disabled>
-            {placeholder}
+const SelectInput = ({ label, value, options, onChange }: SelectInputProps) => (
+  <SelectBlock>
+    <Label>{label}</Label>
+    <SelectWrapper>
+      <Select value={value} onChange={(e) => onChange(e.target.value)}>
+        <option value="" disabled>
+          선택하세요
+        </option>
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
           </option>
-          {options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </Select>
-        <IconWrapper>
-          <FaChevronDown />
-        </IconWrapper>
-      </SelectWrapper>
-    </SelectBlock>
-  );
-};
+        ))}
+      </Select>
+      <IconWrapper>
+        <FaChevronDown />
+      </IconWrapper>
+    </SelectWrapper>
+  </SelectBlock>
+);
 
 export default SelectInput;

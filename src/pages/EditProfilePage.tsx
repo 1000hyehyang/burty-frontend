@@ -1,11 +1,13 @@
 // 📄 pages/EditProfilePage.tsx
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SectionTitle from "../components/Common/SectionTitle";
 import TextInput from "../components/Common/Form/TextInput";
 import SelectInput from "../components/Common/Form/SelectInput";
+import DateInput from "../components/Common/Form/DateInput";
 import PrimaryButton from "../components/Common/PrimaryButton";
 import ProfileImageEditor from "../components/Profile/ProfileImageEditor";
+import { useUserStore } from "../store/useUserStore";
 
 const PageWrapper = styled.div`
   padding: 24px 20px;
@@ -26,16 +28,23 @@ const Form = styled.form`
 `;
 
 const EditProfilePage = () => {
-  const [nickname, setNickname] = useState("김버티");
-  const [region, setRegion] = useState("경기도");
-  const [job, setJob] = useState("개발자");
-  const [birthDate, setBirthDate] = useState("1992.11.20");
+  const {
+    nickname,
+    region,
+    job,
+    birthDate,
+    setNickname,
+    setRegion,
+    setJob,
+    setBirthDate,
+  } = useUserStore();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: API 호출 또는 상태 저장
-    console.log({ nickname, region, job, birthDate });
-    alert("저장 완료!");
+    alert("저장되었습니다!");
+    navigate("/profile"); // 저장 후 마이페이지로 이동
   };
 
   return (
@@ -43,29 +52,25 @@ const EditProfilePage = () => {
       <SectionTitle title="개인정보 수정" />
       <ProfileImageEditor />
       <Form onSubmit={handleSubmit}>
-        <TextInput
-          label="닉네임"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
+        <TextInput label="닉네임" value={nickname} onChange={setNickname} />
         <SelectInput
           label="지역"
-          options={["서울특별시", "경기도", "부산광역시"]}
           value={region}
-          onChange={(e) => setRegion(e.target.value)}
+          options={["서울특별시", "경기도", "부산광역시"]}
+          onChange={setRegion}
         />
         <SelectInput
           label="직무"
-          options={["개발자", "디자이너", "마케터"]}
           value={job}
-          onChange={(e) => setJob(e.target.value)}
+          options={["개발자", "디자이너", "마케터"]}
+          onChange={setJob}
         />
-        <TextInput
+        <DateInput
           label="생년월일"
-          value={birthDate}
-          onChange={(e) => setBirthDate(e.target.value)}
+          selected={birthDate}
+          onChange={setBirthDate}
         />
-        <PrimaryButton fullWidth size="large" type="submit">
+        <PrimaryButton fullWidth size="large">
           저장하기
         </PrimaryButton>
       </Form>

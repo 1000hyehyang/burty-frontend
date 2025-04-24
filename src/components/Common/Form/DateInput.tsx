@@ -1,7 +1,8 @@
-// 📄 components/Common/Form/TextInput.tsx
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const InputBlock = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -13,7 +14,7 @@ const Label = styled.label`
   color: var(--variable-collection-text-200);
 `;
 
-const Input = styled.input`
+const StyledPicker = styled(DatePicker)`
   width: 100%;
   height: 44px;
   padding: 0 16px;
@@ -30,17 +31,22 @@ const Input = styled.input`
   }
 `;
 
-interface TextInputProps {
+interface DateInputProps {
   label: string;
-  value: string;
-  onChange: (val: string) => void;
+  selected: Date | null;
+  onChange: (date: Date | null) => void;
 }
 
-const TextInput = ({ label, value, onChange }: TextInputProps) => (
-  <InputBlock>
+const DateInput = ({ label, selected, onChange }: DateInputProps) => (
+  <Wrapper>
     <Label>{label}</Label>
-    <Input value={value} onChange={(e) => onChange(e.target.value)} />
-  </InputBlock>
+    <StyledPicker
+      selected={selected}
+      onChange={onChange}
+      dateFormat="yyyy.MM.dd"
+      placeholderText="생년월일 선택"
+    />
+  </Wrapper>
 );
 
-export default TextInput;
+export default DateInput;

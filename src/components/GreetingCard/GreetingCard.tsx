@@ -1,12 +1,7 @@
 // 📄 components/GreetingCard.tsx
 import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa";
-
-interface GreetingCardProps {
-  username: string;
-  subtitle: string;
-  profileImage?: string;
-}
+import { useUserStore } from "../../store/useUserStore";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -63,17 +58,16 @@ const IconWrapper = styled.div`
   align-items: center;
 `;
 
-const GreetingCard = ({
-  username,
-  subtitle,
-  profileImage = "/default-profile.png",
-}: GreetingCardProps) => {
+const GreetingCard = () => {
+  const { nickname, profileImage } = useUserStore();
+  const subtitle = `${nickname}님에게 딱 맞는 혜택이 도착했어요!`;
+
   return (
     <Card>
       <LeftGroup>
-        <ProfileImage src={profileImage} alt={`${username} 프로필 이미지`} />
+        <ProfileImage src={profileImage} alt={`${nickname} 프로필`} />
         <TextBlock>
-          <Title>안녕하세요, {username}님</Title>
+          <Title>안녕하세요, {nickname}님</Title>
           <Subtitle>{subtitle}</Subtitle>
         </TextBlock>
       </LeftGroup>

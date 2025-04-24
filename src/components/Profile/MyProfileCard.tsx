@@ -1,12 +1,7 @@
+// 📄 components/Profile/MyProfileCard.tsx
 import styled from "styled-components";
 import { FaMapMarkerAlt } from "react-icons/fa";
-
-interface MyProfileCardProps {
-  name: string;
-  region: string;
-  ageLabel: string;
-  profileImage?: string;
-}
+import { useUserStore } from "../../store/useUserStore";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
@@ -53,22 +48,23 @@ const Age = styled.div`
   color: var(--variable-collection-text-300);
 `;
 
-const MyProfileCard = ({
-  name,
-  region,
-  ageLabel,
-  profileImage = "/default-profile.png",
-}: MyProfileCardProps) => {
+const MyProfileCard = () => {
+  const { nickname, region, birthDate, profileImage } = useUserStore();
+
+  const age = birthDate
+    ? new Date().getFullYear() - birthDate.getFullYear()
+    : "-";
+
   return (
     <Card>
-      <ProfileImage src={profileImage} alt={`${name} 프로필 이미지`} />
+      <ProfileImage src={profileImage} alt={`${nickname} 프로필 이미지`} />
       <Info>
-        <Name>{name}</Name>
+        <Name>{nickname}</Name>
         <Location>
           <FaMapMarkerAlt size={12} />
           {region}
         </Location>
-        <Age>{ageLabel}</Age>
+        <Age>{`${age}세 (${birthDate?.getFullYear()}년생)`}</Age>
       </Info>
     </Card>
   );

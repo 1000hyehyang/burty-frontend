@@ -29,11 +29,7 @@ const MyPage = () => {
 
   return (
     <>
-      <MyProfileCard
-        name="김버티"
-        region="서울특별시 관악구"
-        ageLabel="32세 (1992년생)"
-      />
+      <MyProfileCard />
 
       <MyPageTabs />
 
