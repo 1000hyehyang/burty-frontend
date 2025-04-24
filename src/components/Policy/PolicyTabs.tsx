@@ -1,5 +1,5 @@
 // 📄 components/Policy/PolicyTabs.tsx
-import { usePolicyStore, PolicyCategory } from "../../store/usePolicyStore";
+import { usePolicyStore, PolicyCategory } from "../../store/policy/usePolicyStore";
 import CategoryTabs from "../Common/CategoryTabs";
 
 const categories: PolicyCategory[] = ["전체", "일자리", "주거", "교육", "복지"];

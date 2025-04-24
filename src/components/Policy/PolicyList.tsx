@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PolicyTabs from "./PolicyTabs";
 import PolicyCard from "./PolicyCard";
 import { Policy } from "../../types/policy";
-import { usePolicyStore } from "../../store/usePolicyStore";
+import { usePolicyStore } from "../../store/policy/usePolicyStore";
 
 interface Props {
   policies: Policy[];

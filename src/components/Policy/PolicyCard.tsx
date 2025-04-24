@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import Badge from "../Common/Badge";
-import { useBookmarkStore } from "../../store/useBookmarkStore";
+import { useBookmarkStore } from "../../store/global/useBookmarkStore";
 import { Policy } from "../../types/policy";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 

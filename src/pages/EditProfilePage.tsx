@@ -7,7 +7,7 @@ import SelectInput from "../components/Common/Form/SelectInput";
 import DateInput from "../components/Common/Form/DateInput";
 import PrimaryButton from "../components/Common/PrimaryButton";
 import ProfileImageEditor from "../components/Profile/ProfileImageEditor";
-import { useUserStore } from "../store/useUserStore";
+import { useUserStore } from "../store/user/useUserStore";
 
 const PageWrapper = styled.div`
   padding: 24px 20px;

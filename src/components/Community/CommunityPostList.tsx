@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CommunityPostCard from "./CommunityPostCard";
 import { dummyCommunityPosts } from "../../mock/communityPosts";
 import { dummyCommunityComments } from "../../mock/communityComments";
-import { useCommunityStore } from "../../store/useCommunityStore";
+import { useCommunityStore } from "../../store/community/useCommunityStore";
 
 interface Props {
   mode?: "home" | "community";

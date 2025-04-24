@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 import MenuListGroup from "../components/Common/MenuListGroup";
 import MenuListItem from "../components/Common/MenuListItem";
-import { useMyPageStore } from "../store/useMyPageStore";
+import { useMyPageStore } from "../store/mypage/useMyPageStore";
 
 const Divider = styled.hr`
   border: none;

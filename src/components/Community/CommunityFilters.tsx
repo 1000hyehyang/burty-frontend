@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Dropdown from "../Common/Dropdown";
 import PrimaryButton from "../Common/PrimaryButton";
 import { FaRotateLeft } from "react-icons/fa6";
-import { useCommunityStore } from "../../store/useCommunityStore";
+import { useCommunityStore } from "../../store/community/useCommunityStore";
 
 const Wrapper = styled.div`
   display: flex;

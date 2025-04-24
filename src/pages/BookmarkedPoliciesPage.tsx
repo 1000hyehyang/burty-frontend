@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import SectionTitle from "../components/Common/SectionTitle";
 import { dummyPolicies } from "../mock/policies";
-import { useBookmarkStore } from "../store/useBookmarkStore";
+import { useBookmarkStore } from "../store/global/useBookmarkStore";
 import { selectBookmarkedPolicies } from "../utils/selectBookmarkedPolicies";
 import PolicyList from "../components/Policy/PolicyList";
 

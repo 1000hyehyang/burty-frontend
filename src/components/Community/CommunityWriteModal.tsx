@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PrimaryButton from "../Common/PrimaryButton";
 import StrokeButton from "../Common/StrokeButton.tsx";
 import { useState, useEffect } from "react";
-import { useModalStore } from "../../store/useModalStore.ts";
+import { useModalStore } from "../../store/global/useModalStore.ts";
 
 const Overlay = styled.div`
   position: fixed; /* Viewport 기준으로! */

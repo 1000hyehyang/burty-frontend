@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import hoverAndClickEffect from "./mixins/hoverAndClickEffect";
 import { FaPen } from "react-icons/fa";
-import { useModalStore } from "../../store/useModalStore";
+import { useModalStore } from "../../store/global/useModalStore";
 
 const Button = styled.button`
   position: sticky;

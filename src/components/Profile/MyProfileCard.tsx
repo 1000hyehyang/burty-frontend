@@ -1,7 +1,7 @@
 // 📄 components/Profile/MyProfileCard.tsx
 import styled from "styled-components";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useUserStore } from "../../store/useUserStore";
+import { useUserStore } from "../../store/user/useUserStore";
 
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);

@@ -1,7 +1,7 @@
 // 📁 components/Profile/MyBookmarkedPolicyList.tsx
 import styled from "styled-components";
 import { dummyPolicies } from "../../mock/policies";
-import { useBookmarkStore } from "../../store/useBookmarkStore";
+import { useBookmarkStore } from "../../store/global/useBookmarkStore";
 import { selectBookmarkedPolicies } from "../../utils/selectBookmarkedPolicies";
 import PolicyList from "../Policy/PolicyList";
 

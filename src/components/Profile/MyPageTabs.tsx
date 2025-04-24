@@ -1,6 +1,6 @@
 // 📄 components/Profile/MyPageTabs.tsx
 import CategoryTabs from "../Common/CategoryTabs";
-import { useMyPageStore, MyPageTab } from "../../store/useMyPageStore";
+import { useMyPageStore, MyPageTab } from "../../store/mypage/useMyPageStore";
 
 const tabs: MyPageTab[] = ["찜 목록", "히스토리", "커뮤니티"];
 
