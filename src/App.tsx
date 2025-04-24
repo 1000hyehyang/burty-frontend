@@ -1,4 +1,5 @@
 // 📄 App.tsx
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import GlobalStyle from "./components/Layout/GlobalStyle";
 import Layout from "./components/Layout/Layout";
@@ -15,8 +16,20 @@ import MyPostsPage from "./pages/MyPostsPage";
 import LikedPostsPage from "./pages/LikedPostsPage";
 import CommentedPostsPage from "./pages/CommentedPostsPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import { useCommunityStore } from "./store/community/useCommunityStore";
+import { dummyCommunityPosts } from "./mock/communityPosts";
+import { dummyCommunityComments } from "./mock/communityComments";
 
 function App() {
+  const setInitialData = useCommunityStore((state) => state.setInitialData);
+  const isInitialized = useCommunityStore((state) => state.posts.length > 0 && state.comments.length > 0);
+
+  useEffect(() => {
+    if (!isInitialized) {
+      setInitialData(dummyCommunityPosts, dummyCommunityComments);
+    }
+  }, [isInitialized, setInitialData]);
+
   return (
     <>
       <GlobalStyle />
@@ -30,10 +43,7 @@ function App() {
           <Route path="/community/:postId" element={<CommunityDetailPage />} />
           <Route path="/jobs" element={<JobsPage />} />
           <Route path="/profile" element={<MyPage />} />
-          <Route
-            path="/profile/bookmarks"
-            element={<BookmarkedPoliciesPage />}
-          />
+          <Route path="/profile/bookmarks" element={<BookmarkedPoliciesPage />} />
           <Route path="/community/my-posts" element={<MyPostsPage />} />
           <Route path="/community/liked" element={<LikedPostsPage />} />
           <Route path="/community/comments" element={<CommentedPostsPage />} />
