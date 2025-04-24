@@ -2,9 +2,10 @@
 import styled from "styled-components";
 import LikeButton from "../Common/LikeButton";
 import { MdReport } from "react-icons/md";
-import { CommunityComment } from "../../mock/communityComments";
 import Badge from "../Common/Badge";
 import { getTimeAgo } from "../../utils/timeAgo";
+import { useUserStore } from "../../store/user/useUserStore";
+import { useCommunityStore, CommunityComment } from "../../store/community/useCommunityStore";
 
 const Wrapper = styled.div`
   background: var(--variable-collection-bg-100);
@@ -108,39 +109,43 @@ const DeleteButton = styled(EditButton)`
 
 interface Props {
   comment: CommunityComment;
-  currentUserNickname?: string; // 현재 로그인된 사용자 닉네임
 }
 
-const CommentItem = ({ comment, currentUserNickname }: Props) => {
-  const isMyComment = comment.nickname === currentUserNickname;
-
-  const handleReport = () => {
-    alert("신고되었습니다.");
-  };
+const CommentItem = ({ comment }: Props) => {
+  const currentNickname = useUserStore((state) => state.nickname);
+  const likeComment = useCommunityStore((state) => state.likeComment);
+  const isMyComment = comment.author.nickname === currentNickname;
 
   const handleEdit = () => {
-    alert("수정하기 기능은 추후 구현 예정입니다.");
+    alert("댓글 수정 기능은 추후 구현됩니다.");
   };
 
   const handleDelete = () => {
-    alert("삭제하기 기능은 추후 구현 예정입니다.");
+    alert("댓글 삭제 기능은 추후 구현됩니다.");
+  };
+
+  const handleReport = () => {
+    alert("댓글이 신고되었습니다.");
+  };
+
+  const handleLike = () => {
+    likeComment(comment.commentId);
   };
 
   return (
     <Wrapper>
-      <ProfileImage src="/default-profile.png" alt="프로필 이미지" />
+      <ProfileImage src={comment.author.profileImage || "/default-profile.png"} />
       <ContentBox>
         <TopRow>
-          <Nickname>{comment.nickname}</Nickname>
-          <Badge type="primary" size="small">{comment.ageGroup}</Badge>
-          <Badge type="primary" size="small">{comment.location}</Badge>
-          <Badge type="primary" size="small">{comment.job}</Badge>
+          <Nickname>{comment.author.nickname}</Nickname>
+          <Badge type="primary" size="small">{comment.author.ageGroup}</Badge>
+          <Badge type="primary" size="small">{comment.author.region}</Badge>
+          <Badge type="primary" size="small">{comment.author.job}</Badge>
         </TopRow>
         <Time>{getTimeAgo(comment.createdAt)}</Time>
         <CommentText>{comment.content}</CommentText>
 
         <BottomRow>
-          {/* 왼쪽: 내 댓글이면 수정/삭제 */}
           <ButtonGroupLeft>
             {isMyComment && (
               <>
@@ -150,9 +155,8 @@ const CommentItem = ({ comment, currentUserNickname }: Props) => {
             )}
           </ButtonGroupLeft>
 
-          {/* 오른쪽: 좋아요 + 신고 */}
           <ButtonGroupRight>
-            <LikeButton initialLikes={comment.likes} fontSize={13} iconSize={14} />
+            <LikeButton initialLikes={comment.likes} onClick={handleLike} fontSize={13} iconSize={14} />
             <IconButton onClick={handleReport}>
               <MdReport /> 신고하기
             </IconButton>

@@ -1,8 +1,6 @@
 // 📄 components/Community/CommunityPostList.tsx
 import styled from "styled-components";
 import CommunityPostCard from "./CommunityPostCard";
-import { dummyCommunityPosts } from "../../mock/communityPosts";
-import { dummyCommunityComments } from "../../mock/communityComments";
 import { useCommunityStore } from "../../store/community/useCommunityStore";
 
 interface Props {
@@ -14,13 +12,13 @@ const Section = styled.section`
 `;
 
 const CommunityPostList = ({ mode = "community" }: Props) => {
-  const { sort, region, ageGroup, job } = useCommunityStore();
+  const { sort, region, ageGroup, job, posts, comments } = useCommunityStore();
 
   // 1. 필터 적용
-  const filtered = dummyCommunityPosts.filter((post) => {
-    const matchRegion = region === "전체" || post.location === region;
-    const matchAge = ageGroup === "전체" || post.ageGroup === ageGroup;
-    const matchJob = job === "전체" || post.job === job;
+  const filtered = posts.filter((post) => {
+    const matchRegion = region === "전체" || post.author.region === region;
+    const matchAge = ageGroup === "전체" || post.author.ageGroup === ageGroup;
+    const matchJob = job === "전체" || post.author.job === job;
     return matchRegion && matchAge && matchJob;
   });
 
@@ -41,18 +39,13 @@ const CommunityPostList = ({ mode = "community" }: Props) => {
   return (
     <Section>
       {visiblePosts.map((post) => {
-        const commentCount = dummyCommunityComments.filter(
-          (comment) => comment.postId === post.postId
-        ).length;
+        const commentCount = comments.filter((c) => c.postId === post.postId).length;
 
         return (
           <CommunityPostCard
             key={post.postId}
             postId={post.postId}
-            nickname={post.nickname}
-            ageGroup={post.ageGroup}
-            location={post.location}
-            job={post.job}
+            author={post.author}
             content={post.content}
             likes={post.likes}
             comments={commentCount}

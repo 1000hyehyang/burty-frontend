@@ -5,22 +5,8 @@ import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { FaHeart, FaRegComment, FaEye } from "react-icons/fa";
 import Badge from "../Common/Badge";
 import { useNavigate } from "react-router-dom";
+import { CommunityAuthor } from "../../store/community/useCommunityStore";
 
-interface CommunityPostCardProps {
-  postId: number;
-  nickname: string;
-  ageGroup: string;
-  location: string;
-  job: string;
-  content: string;
-  likes: number;
-  comments: number;
-  views: number;
-  createdAt: string; 
-  profileImage?: string;
-}
-
-// 카드 자체에 양쪽 여백 포함
 const Card = styled.div`
   background-color: var(--variable-collection-bg-100);
   border-radius: 15px;
@@ -97,19 +83,24 @@ const Stat = styled.div`
     font-size: clamp(10px, 2.5vw, 12px);
   }
 `;
+interface CommunityPostCardProps {
+  postId: number;
+  author: CommunityAuthor;
+  content: string;
+  likes: number;
+  comments: number;
+  views: number;
+  createdAt: string;
+}
 
 const CommunityPostCard = ({
   postId,
-  nickname,
-  ageGroup,
-  location,
-  job,
+  author,
   content,
   likes,
   comments,
   views,
   createdAt,
-  profileImage,
 }: CommunityPostCardProps) => {
   const navigate = useNavigate();
 
@@ -120,20 +111,20 @@ const CommunityPostCard = ({
   return (
     <Card onClick={handleClick}>
       <ProfileImage
-        src={profileImage || "/default-profile.png"}
-        alt={`${nickname} 프로필`}
+        src={author.profileImage || "/default-profile.png"}
+        alt={`${author.nickname} 프로필`}
       />
       <ContentBox>
         <TopRow>
-          <Nickname>{nickname}</Nickname>
+          <Nickname>{author.nickname}</Nickname>
           <Badge type="primary" size="small">
-            {ageGroup}
+            {author.ageGroup}
           </Badge>
           <Badge type="primary" size="small">
-            {location}
+            {author.region}
           </Badge>
           <Badge type="primary" size="small">
-            {job}
+            {author.job}
           </Badge>
         </TopRow>
         <Time>{getTimeAgo(createdAt)}</Time>

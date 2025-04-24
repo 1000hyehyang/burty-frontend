@@ -49,7 +49,9 @@ const Age = styled.div`
 `;
 
 const MyProfileCard = () => {
-  const { nickname, region, birthDate, profileImage } = useUserStore();
+  const { nickname, region, birthDate: rawBirthDate, profileImage } = useUserStore();
+
+  const birthDate = typeof rawBirthDate === "string" ? new Date(rawBirthDate) : rawBirthDate;
 
   const age = birthDate
     ? new Date().getFullYear() - birthDate.getFullYear()
@@ -64,7 +66,7 @@ const MyProfileCard = () => {
           <FaMapMarkerAlt size={12} />
           {region}
         </Location>
-        <Age>{`${age}세 (${birthDate?.getFullYear()}년생)`}</Age>
+        <Age>{`${age}세 (${birthDate?.getFullYear?.()}ub144생)`}</Age>
       </Info>
     </Card>
   );

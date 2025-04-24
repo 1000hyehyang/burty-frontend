@@ -1,9 +1,11 @@
 // 📄 components/Community/CommunityPostDetail.tsx
 import styled from "styled-components";
 import { FaRegComment } from "react-icons/fa";
-import { CommunityPost } from "../../mock/communityPosts";
 import LikeButton from "../Common/LikeButton";
 import Badge from "../Common/Badge";
+import { useCommunityStore } from "../../store/community/useCommunityStore";
+import { useUserStore } from "../../store/user/useUserStore";
+import { CommunityPost } from "../../store/community/useCommunityStore";
 
 const Wrapper = styled.div`
   background: var(--variable-collection-bg-100);
@@ -125,10 +127,13 @@ const DeleteButton = styled(EditButton)`
 
 interface Props {
   post: CommunityPost;
-  isMyPost?: boolean;
 }
 
-const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
+const CommunityPostDetail = ({ post }: Props) => {
+  const likePost = useCommunityStore((state) => state.likePost);
+  const currentNickname = useUserStore((state) => state.nickname);
+  const isMyPost = post.author.nickname === currentNickname;
+
   const handleEdit = () => {
     alert("게시글 수정하기는 추후 구현됩니다.");
   };
@@ -137,22 +142,20 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
     alert("게시글 삭제하기는 추후 구현됩니다.");
   };
 
+  const handleLike = () => {
+    likePost(post.postId);
+  };
+
   return (
     <Wrapper>
       <TopRow>
-        <ProfileImage src="/default-profile.png" />
+        <ProfileImage src={post.author.profileImage || "/default-profile.png"} />
         <InfoBox>
           <NameRow>
-            <Nickname>{post.nickname}</Nickname>
-            <Badge type="primary" size="small">
-              {post.ageGroup}
-            </Badge>
-            <Badge type="primary" size="small">
-              {post.location}
-            </Badge>
-            <Badge type="primary" size="small">
-              {post.job}
-            </Badge>
+            <Nickname>{post.author.nickname}</Nickname>
+            <Badge type="primary" size="small">{post.author.ageGroup}</Badge>
+            <Badge type="primary" size="small">{post.author.region}</Badge>
+            <Badge type="primary" size="small">{post.author.job}</Badge>
           </NameRow>
           <Time>{new Date(post.createdAt).toLocaleString()}</Time>
         </InfoBox>
@@ -162,9 +165,9 @@ const CommunityPostDetail = ({ post, isMyPost = true }: Props) => {
 
       <BottomRow>
         <Stats>
-          <LikeButton initialLikes={post.likes} />
+          <LikeButton initialLikes={post.likes} onClick={handleLike} />
           <span className="comment">
-            <FaRegComment /> {post.comments}
+            <FaRegComment /> 댓글
           </span>
         </Stats>
 

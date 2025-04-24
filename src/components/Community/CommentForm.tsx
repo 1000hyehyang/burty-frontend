@@ -2,6 +2,9 @@
 import styled from "styled-components";
 import PrimaryButton from "../Common/PrimaryButton";
 import { useState } from "react";
+import { useUserStore } from "../../store/user/useUserStore";
+import { useCommunityStore } from "../../store/community/useCommunityStore";
+import { CommunityComment } from "../../store/community/useCommunityStore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,18 +54,47 @@ const ButtonBox = styled.div`
   justify-content: flex-end;
 `;
 
-const CommentForm = () => {
+
+interface Props {
+  postId: number;
+}
+
+const CommentForm = ({ postId }: Props) => {
   const [text, setText] = useState("");
+
+  const nickname = useUserStore((s) => s.nickname);
+  const profileImage = useUserStore((s) => s.profileImage);
+  const region = useUserStore((s) => s.region);
+  const job = useUserStore((s) => s.job);
+  const birthDate = useUserStore((s) => s.birthDate);
+
+  const addComment = useCommunityStore((s) => s.addComment);
 
   const handleSubmit = () => {
     if (!text.trim()) return;
-    console.log("댓글 작성:", text);
+
+    const newComment: CommunityComment = {
+      commentId: Date.now(),
+      postId,
+      content: text,
+      createdAt: new Date().toISOString(),
+      likes: 0,
+      author: {
+        nickname,
+        profileImage,
+        region,
+        job,
+        ageGroup: birthDate ? "20대" : "미상", // TODO: 실제 나이 계산 추후 추가
+      },
+    };
+
+    addComment(newComment);
     setText("");
   };
 
   return (
     <Wrapper>
-      <Profile src="/default-profile.png" />
+      <Profile src={profileImage || "/default-profile.png"} />
       <InputSection>
         <Input
           placeholder="댓글을 입력하세요."
@@ -80,4 +112,5 @@ const CommentForm = () => {
 };
 
 export default CommentForm;
+
 
