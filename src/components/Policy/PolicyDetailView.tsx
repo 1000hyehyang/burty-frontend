@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PrimaryButton from "../Common/PrimaryButton";
 import StrokeButton from "../Common/StrokeButton.tsx";
 import { PolicyDetail } from "../../types/policy";
+import PolicyDetailSection from "./PolicyDetailSection";
 
 const Section = styled.section`
   padding: 20px 16px;
@@ -18,18 +19,6 @@ const Description = styled.p`
   font-size: 14px;
   color: #555;
   margin-bottom: 20px;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 14px;
-  font-weight: 600;
-  margin: 24px 0 8px;
-`;
-
-const Content = styled.p`
-  font-size: 13px;
-  color: var(--variable-collection-text-300);
-  white-space: pre-line;
 `;
 
 const ButtonBox = styled.div`
@@ -49,26 +38,30 @@ const PolicyDetailView = ({ policy }: { policy: PolicyDetail }) => (
       </PrimaryButton>
     </ButtonBox>
 
-    <SectionTitle>지원 내용</SectionTitle>
-    <Content>{policy.supportContent}</Content>
+    <PolicyDetailSection icon="info" title="지원 내용">
+      {policy.supportContent}
+    </PolicyDetailSection>
 
-    <SectionTitle>지원 대상</SectionTitle>
-    <Content>
-      만 {policy.minAge}세 ~ {policy.maxAge}세  
-      {"\n"}{policy.qualification}
-    </Content>
+    <PolicyDetailSection icon="person" title="지원 대상">
+      만 {policy.minAge}세 ~ {policy.maxAge}세{"\n"}
+      {policy.qualification}
+    </PolicyDetailSection>
 
-    <SectionTitle>신청 방법</SectionTitle>
-    <Content>{policy.applyMethod}</Content>
+    <PolicyDetailSection icon="file" title="신청 방법">
+      {policy.applyMethod}
+    </PolicyDetailSection>
 
-    <SectionTitle>심사 방법</SectionTitle>
-    <Content>{policy.selectionMethod}</Content>
+    <PolicyDetailSection icon="file" title="심사 방법">
+      {policy.selectionMethod}
+    </PolicyDetailSection>
 
-    <SectionTitle>제출 서류</SectionTitle>
-    <Content>{policy.requiredDocuments}</Content>
+    <PolicyDetailSection icon="file" title="제출 서류">
+      {policy.requiredDocuments}
+    </PolicyDetailSection>
 
-    <SectionTitle>신청 기간</SectionTitle>
-    <Content>{policy.applicationPeriod}</Content>
+    <PolicyDetailSection icon="calendar" title="신청 기간">
+      {policy.applicationPeriod}
+    </PolicyDetailSection>
   </Section>
 );
 
