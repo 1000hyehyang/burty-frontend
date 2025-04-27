@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import hoverAndClickEffect from "../Common/mixins/hoverAndClickEffect";
 import { dummyYouthContents } from "../../mock/youthContents";
+import { useNavigate } from "react-router-dom";
 
 const Grid = styled.div`
   display: grid;
@@ -21,17 +22,18 @@ const ContentCard = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  
+
   ${hoverAndClickEffect}
 `;
 
 const ContentSection = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Grid>
-        {dummyYouthContents.map(({ id, image, alt }) => (
-          <ContentCard key={id}>
-            <img src={image} alt={alt} />
+        {dummyYouthContents.map(({ id, image }) => (
+          <ContentCard key={id} onClick={() => navigate(`/settlement/content/${id}`)}>
+            <img src={image} />
           </ContentCard>
         ))}
       </Grid>

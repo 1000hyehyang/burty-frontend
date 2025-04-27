@@ -5,6 +5,7 @@ import GlobalStyle from "./components/Layout/GlobalStyle";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import SettlementPage from "./pages/SettlementPage";
+import YouthContentDetailPage from "./pages/YouthContentDetailPage";
 import PolicyDetailPage from "./pages/PolicyDetailPage";
 import CenterMapPage from "./pages/CenterMapPage";
 import KeywordSearchPage from "./pages/KeywordSearchPage";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="/settlement" element={<SettlementPage />} />
+          <Route path="/settlement/content/:id" element={<YouthContentDetailPage />} />
           <Route path="/settlement/centers" element={<CenterMapPage />} />
           <Route path="/settlement/policy" element={<KeywordSearchPage />} />
           <Route path="/policy/:id" element={<PolicyDetailPage />} />
